@@ -8,11 +8,11 @@ body, html {
 h1 {
     color: #FAF9F6;
     font-family: 'Avenir';
-    font-size: 3rem;
+    font-size: 3rem; 
     font-weight: bold;
     text-transform: uppercase;
     margin-bottom: 0.5em;
-    text-align: left;
+    text-align: left; 
     line-height: 0.8;
     letter-spacing: 0.65rem;
 }
@@ -36,12 +36,14 @@ h1 {
     align-items: center;
     flex-wrap: wrap;
     width: 100%;
+    position: relative;
 }
 
 #info {
-    max-width: 600px;
+    max-width: 600px; 
     text-align: center;
     color: #86868b;
+    position: relative;
 }
 
 i {
@@ -58,15 +60,23 @@ i {
 }
 
 #profilePic {
-    width: 20rem;
+    width: 20rem; 
     height: auto;
     border-radius: 100%;
     object-fit: cover;
     box-shadow: 0 4px 8px rgba(255, 255, 255, 0.106);
-    margin-bottom: 17rem;
+    margin-bottom: 10rem;
     background-color: #86868b;
     overflow: hidden;
     display: block;
+
+}
+
+#namasteSvg {
+    position: absolute;
+    top: 3em;
+    right: 0;
+    z-index: 10;
 }
 
 #socialIcons img {
@@ -75,33 +85,13 @@ i {
     margin: 0.5em;
 }
 
-.linkedin-icon i {
+.linkedin-icon i, .email-icon i, .github-icon i {
     color: white;
     opacity: 0.75;
     transition: opacity 0.3s;
 }
 
-.linkedin-icon:hover i {
-    opacity: 1;
-}
-
-.email-icon i {
-    color: white;
-    opacity: 0.70;
-    transition: opacity 0.3s;
-}
-
-.email-icon:hover i {
-    opacity: 1;
-}
-
-.github-icon i {
-    color: white;
-    opacity: 0.75;
-    transition: opacity 0.3s;
-}
-
-.github-icon:hover i {
+.linkedin-icon:hover i, .email-icon:hover i, .github-icon:hover i {
     opacity: 1;
 }
 
@@ -121,7 +111,7 @@ i {
 
 .projects-title {
     font-family: 'Avenir';
-    font-size: 3rem;
+    font-size: 3rem; 
     color: #FAF9F6;
     margin: 0;
     padding: 0;
@@ -140,6 +130,18 @@ i {
     border-radius: 1em;
 }
 
+@keyframes drawText {
+    to {
+        stroke-dashoffset: 0;
+    }
+}
+
+svg text {
+    stroke-dasharray: 700;
+    stroke-dashoffset: 700;
+    animation: drawText 5s forwards;
+}
+
 @media (max-width: 768px) {
     #profile {
         flex-direction: column;
@@ -148,6 +150,36 @@ i {
     #info, #profilePic {
         width: 100%;
         margin-bottom: 1em;
-        max-width: 7em;
+        max-width: 90%;
     }
+
+    #namasteSvg {
+        position: absolute;
+        top: 0;
+        left: 50%;
+        transform: translate(-50%, 20px);
+        z-index: 10;
+    }
+
+    h1, .projects-title {
+        text-align: center;
+        font-size: calc(1rem + 1.5vw);
+    }
+
+    .content, .icon-container, #header {
+        text-align: center;
+        padding: 1em;
+    }
+
+    .title-line {
+        width: 100%;
+        left: 0;
+    }
+}
+
+@media (max-width: 480px) {
+    h1, .projects-title {
+        font-size: calc(0.8rem + 1.5vw);
+    }
+    
 }

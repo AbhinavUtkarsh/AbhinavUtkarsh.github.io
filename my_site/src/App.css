@@ -1,0 +1,129 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap');
+
+.App {
+  text-align: center;
+  color: white;
+  background-color: #101010;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.header {
+  display: grid;
+  grid-template-areas:
+    'name photo'
+    'icons2 icons'
+    'intro intro';
+  grid-template-columns: 3fr 2fr; /* Adjust based on content */
+  align-items: start;
+  gap: 20px;
+  max-width: 1000px;
+  margin: 0 auto;
+  width: 90%;
+}
+
+.name {
+  grid-area: name;
+  font-size: 5rem; /* Increased font size */
+  line-height: 1.2;
+  margin: 0; /* Removed margin to standardize spacing */
+  text-align: left; /* Align text to the left */
+  font-family: 'Roboto', sans-serif; /* Ensure the font-family is correctly stated */
+  font-weight: 100; /* Use 100 for the font-weight as imported */
+  letter-spacing: 0.75rem;
+  padding-left: 1rem; /* Add padding to match the intro text */
+}
+
+.name2 {
+  grid-area: name;
+  font-size: 5rem; /* Increased font size */
+  line-height: 1.2;
+  margin: 0; /* Removed margin to standardize spacing */
+  text-align: left; /* Align text to the left */
+  font-family: 'Roboto', sans-serif; /* Ensure the font-family is correctly stated */
+  font-weight: 100; /* Use 100 for the font-weight as imported */
+  letter-spacing: 0.5rem;
+  padding-left: 1rem; /* Add padding to match the intro text */
+  padding-bottom: 1.5rem;
+  padding-top: 1.5rem;
+}
+
+.icon-container {
+  display: flex;
+  justify-content: center; /* Center the icons directly */
+  gap: 5rem; /* Space out the icons */
+  margin-top: 1rem; /* Spacing between photo and icons */
+  font-size: 1.7rem; /* Icon size */
+  grid-area: icons;
+}
+
+
+.icon-container a {
+  color: white; /* Icon color */
+  text-decoration: none; /* Remove underline from icons */
+}
+
+.icon-container a:hover {
+  color: gray; /* Icon hover color */
+}
+
+.profile-photo {
+  grid-area: photo;
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 5px solid #86868b;
+  padding: 10px;
+  justify-self: center; /* Center the photo in its grid area */
+}
+
+.intro-text {
+  grid-area: intro;
+  text-align: justify; /* Justify the text for better filling */
+  font-size: 1.2rem;
+  margin: 0; /* Align the top and bottom margin with the name */
+  padding: 1rem; /* Add padding to match the name element */
+}
+/* Mobile View */
+@media (max-width: 768px) {
+  .header {
+    grid-template-areas:
+      'photo'
+      'icons'
+      'name'
+      'intro';
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+
+  .name, .name2 {
+    /* Adjusted styles for mobile view */
+    font-size: 2rem;
+    text-align: center;
+    letter-spacing: normal; /* Adjust as needed */
+    margin-top: 20px; /* Provide spacing from icons */
+  }
+
+  .icon-container {
+    /* Ensure icons stay below the photo in mobile view */
+    margin-top: 20px; /* Adjust spacing as needed */
+    margin-bottom: 20px; /* Provide spacing from name */
+  }
+
+  .profile-photo {
+    /* Adjustments for mobile view */
+    width: 120px;
+    height: 120px;
+    margin: 0 auto; /* Center the photo */
+  }
+
+  .intro-text {
+    /* Adjusted styles for mobile view */
+    font-size: 1rem;
+    text-align: justify; /* Ensure consistent alignment */
+    padding: 10px; /* Adjust padding for better text block */
+  }
+}

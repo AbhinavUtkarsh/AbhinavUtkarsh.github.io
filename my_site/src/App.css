@@ -1,0 +1,336 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@300&display=swap');
+
+
+.App {
+  text-align: center;
+  color: white;
+  background-color: #101010;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  width: 100%;
+  overflow-x: hidden; 
+  position: relative;
+}
+
+.header {
+  display: grid;
+  grid-template-columns: 3fr 2fr; 
+  grid-template-areas:
+    'name photo'
+    'icons2 icons'
+    'intro intro';
+  align-items: start;
+  gap: 20px;
+  max-width: 1000px;
+  margin: 0 auto;
+  width: 90%;
+  padding-top: 10rem;
+}
+
+.name {
+  grid-area: name;
+  font-size: 5rem; 
+  line-height: 1.2;
+  margin: 0; 
+  text-align: left; 
+  font-family: 'Roboto', sans-serif; 
+  font-weight: 100; 
+  letter-spacing: 0.75rem;
+  padding-left: 1rem; 
+}
+
+.name2 {
+  grid-area: name;
+  font-size: 5rem; 
+  line-height: 1.2;
+  margin: 0; 
+  text-align: left; 
+  font-family: 'Roboto', sans-serif; 
+  font-weight: 100; 
+  letter-spacing: 0.5rem;
+  padding-left: 1rem;
+  padding-bottom: 1.5rem;
+  padding-top: 1.5rem;
+}
+
+.icon-container {
+  display: flex;
+  justify-content: center; 
+  gap: 5rem; 
+  margin-top: 1rem; 
+  font-size: 1.7rem; 
+  grid-area: icons;
+  padding-bottom: 1rem;
+}
+
+
+.icon-container a {
+  color: white; 
+  text-decoration: none; 
+  transition: color 0.4s ease; 
+}
+
+.icon-container a:hover {
+  color: gray; 
+}
+
+.profile-photo {
+  grid-area: photo;
+  width: 15rem;
+  height: 15rem;
+  border-radius: 50%;
+  object-fit: cover;
+  border: none;
+  padding: 10px;
+  justify-self: center; 
+  
+}
+.photo-wrapper {
+  grid-area: photo;
+  width: 15rem; 
+  height: 15rem;
+  border-radius: 100%;
+  background-color: rgba(134, 134, 139, 0.07); 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  justify-self: center;
+  
+}
+
+
+.intro-text {
+  grid-area: intro;
+  text-align: justify; 
+  font-size: 1.7rem;
+  margin: 0; 
+  padding: 1rem; 
+  font-family: 'Nunito'; 
+  letter-spacing: 0.145rem; 
+}
+.section-title {
+  font-size: 2.5rem;
+  font-family: 'Nunito', sans-serif;
+  text-align: left;
+  margin: 3rem 0;
+  position: relative;
+  letter-spacing: 0.145rem;
+
+}
+.section-title:after {
+  content: '';
+  display: block;
+  width: 100%; 
+  height: 3px;
+  background: linear-gradient(to right, rgba(134, 134, 139, 0), rgba(41, 41, 43, 0.75), rgba(134, 134, 139, 0));
+  margin: 1rem auto;
+}
+
+
+.recent-projects {
+  max-height: 20rem; 
+  max-width: 1000px; 
+  width: 90%; 
+  margin: 0 auto;
+}
+
+
+h3 {
+  font-size: 2rem;
+  font-family: 'Nunito', sans-serif;
+  text-align: left;
+  margin: 1rem 0;
+  position: relative;
+  letter-spacing: 0.145rem;
+  color: white;
+}
+
+.project-box {
+  display: flex; 
+  align-items: stretch; 
+  justify-content: space-between; 
+  background-color: rgba(134, 134, 139, 0.07);
+  border-radius: 2.5rem;
+  overflow: hidden;
+  margin-bottom: 3rem;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1); 
+  width: 90%; 
+  max-width: 1000px; 
+  margin: 0 auto; 
+}
+
+.project-box:not(:last-child) {
+  margin-bottom: 3rem; 
+}
+.project-box-link:not(:last-child) {
+  margin-bottom: 3rem; 
+}
+
+.project-box-link {
+  text-decoration: none; 
+  color: inherit; 
+  display: block; 
+}
+
+.project-content {
+  width: 75%;
+  padding: 1.5rem;
+  
+}
+
+.institute {
+  font-size: 1rem; 
+  color: #666;
+  text-align: left;
+}
+
+.description {
+  font-size: 0.9rem; 
+  margin-top: 0.3rem; 
+  text-align: left;
+  color: white; 
+  line-height: 1.3; 
+  text-align: justify; 
+}
+
+.keywords {
+  font-size: 0.9rem; 
+  margin-top: 10px; 
+  color: #444;
+  text-align: right;
+}
+
+.project-image-placeholder {
+  width: 25%;
+  background-size: cover; 
+  flex-shrink: 0;
+  border-radius: 2.5rem; 
+
+}
+
+.project-box.no-image .project-content {
+  width: 100%;
+}
+
+.project-box.no-image .project-image-placeholder {
+  display: none;
+}
+
+
+.view-more-btn {
+
+  transition: background-color 0.45s ease; 
+  color: white;
+  font-family: 'Nunito', sans-serif;
+  border-radius: 0.6rem; 
+  background-color: rgba(134, 134, 139, 0.07);
+  padding: 0.7rem 0.9rem; 
+  border: none;
+  font-size: 1.2rem;
+  margin-top: 3rem; 
+  margin-bottom: 3rem; 
+}
+
+
+
+
+.view-more-btn:hover {
+  background-color: gray;
+}
+
+
+/* Mobile View */
+@media (max-width: 768px) {
+  .header {
+    grid-template-areas:
+      'name'
+      'photo'
+      'icons'
+      'intro';
+    grid-template-columns: 1fr;
+    text-align: center;
+    padding-top: 1rem;
+    width: auto; 
+    margin: 0 10px; 
+    max-width: none; 
+  }
+
+  .recent-projects {
+    width: auto;
+    margin: 0 10px; 
+    max-width: none; 
+  }
+
+  .project-box {
+      flex-direction: column; 
+      align-items: center; 
+      padding: 1rem;
+      
+    
+  }
+
+  .project-content, .project-image-placeholder {
+    width: 100%; 
+  }
+  
+  .project-image-placeholder {
+    height: 200px; 
+    background-size: contain; 
+    background-position: top center; 
+  }
+
+
+  .name, .name2 {
+
+    font-size: 2.8rem;
+    text-align: center;
+    letter-spacing: normal; 
+    margin-top: 4rem; 
+    letter-spacing: 0.75rem;
+    line-height: 2.5rem;
+  }
+
+  .icon-container {
+  
+    padding-bottom: 1rem;
+    padding-bottom: 1rem;
+    gap: 4.5rem;
+    font-size: 1.45rem;
+    
+  }
+
+  .profile-photo {
+
+    width: 12rem;
+    height: 12rem;
+    margin: 0 auto; 
+  }
+  .photo-wrapper {
+    width: 12rem; 
+    height: 12rem; 
+    border-radius: 50%; 
+    background-color: rgba(134, 134, 139, 0.07); 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    justify-self: center; 
+    padding: 0; 
+  }
+
+
+  .intro-text {
+
+    font-size: 1rem;
+    text-align: justify;
+    padding: 10px;
+  }
+
+  .section-title {
+    padding: 1rem;
+  }
+}

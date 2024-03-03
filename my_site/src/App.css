@@ -21,8 +21,8 @@
 /* Devanagari static text for safari */
 .devanagari-text.static {
   position: absolute;
-  top: -5%;
-  left: -10%;
+  top: -10%;
+  left: -5%;
   color: rgba(134, 134, 139, 0.4)
 }
 

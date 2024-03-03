@@ -22,8 +22,15 @@
 .devanagari-text {
   font-size: 6rem;
   font-family: 'Noto Sans Devanagari', sans-serif;
-  color: rgba(134, 134, 139, 0.15);
+  color: rgba(134, 134, 139, 0.40);
   letter-spacing: 0.07rem;
+}
+
+.devnagri-static-wrapper {
+  position: absolute;
+  top: 2%;
+  left: 30%;
+  transform: translateX(7%) translateY(-7%);
 }
 
 .devanagari-wrapper {
@@ -387,7 +394,7 @@ body {
     font-size: 4rem;
   }
 
-  .devanagari-wrapper {
+  .devanagari-wrapper .devnagri-static-wrapper{
     position: absolute;
     top: 5%;
     left: 21%;
@@ -402,7 +409,7 @@ body {
 
 /* Dynamic text centering manually, bug: doesn´t center automatically */
 @media (max-width: 750px){
-  .devanagari-wrapper {
+  .devanagari-wrapper .devnagri-static-wrapper{
     position: absolute;
     top: 5%;
     left: 20%;
@@ -411,7 +418,7 @@ body {
 }
 
 @media (max-width: 725px){
-  .devanagari-wrapper {
+  .devanagari-wrapper .devnagri-static-wrapper{
     position: absolute;
     top: 5%;
     left: 19%;
@@ -420,7 +427,7 @@ body {
 }
 
 @media (max-width: 700px){
-  .devanagari-wrapper {
+  .devanagari-wrapper .devnagri-static-wrapper{
     position: absolute;
     top: 5%;
     left: 18%;
@@ -429,7 +436,7 @@ body {
 }
 
 @media (max-width: 675px){
-  .devanagari-wrapper {
+  .devanagari-wrapper .devnagri-static-wrapper{
     position: absolute;
     top: 5%;
     left: 17%;
@@ -438,7 +445,7 @@ body {
 }
 
 @media (max-width: 650px){
-  .devanagari-wrapper {
+  .devanagari-wrapper .devnagri-static-wrapper{
     position: absolute;
     top: 5%;
     left: 15%;
@@ -447,7 +454,7 @@ body {
 }
 
 @media (max-width: 625px){
-  .devanagari-wrapper {
+  .devanagari-wrapper .devnagri-static-wrapper{
     position: absolute;
     top: 5%;
     left: 13%;
@@ -456,7 +463,7 @@ body {
 }
 
 @media (max-width: 600px){
-  .devanagari-wrapper {
+  .devanagari-wrapper .devnagri-static-wrapper{
     position: absolute;
     top: 5%;
     left: 12%;
@@ -465,7 +472,7 @@ body {
 }
 
 @media (max-width: 575px){
-  .devanagari-wrapper {
+  .devanagari-wrapper .devnagri-static-wrapper{
     position: absolute;
     top: 5%;
     left: 10%;
@@ -474,7 +481,7 @@ body {
 }
 
 @media (max-width: 550px){
-  .devanagari-wrapper {
+  .devanagari-wrapper .devnagri-static-wrapper{
     position: absolute;
     top: 5%;
     left: 8%;
@@ -483,7 +490,7 @@ body {
 }
 
 @media (max-width: 525px){
-  .devanagari-wrapper {
+  .devanagari-wrapper .devnagri-static-wrapper{
     position: absolute;
     top: 5%;
     left: 5%;
@@ -492,7 +499,7 @@ body {
 }
 
 @media (max-width: 500px){
-  .devanagari-wrapper {
+  .devanagari-wrapper .devnagri-static-wrapper{
     position: absolute;
     top: 5%;
     left: 5%;
@@ -501,7 +508,7 @@ body {
 }
 
 @media (max-width: 475px){
-  .devanagari-wrapper {
+  .devanagari-wrapper .devnagri-static-wrapper{
     position: absolute;
     top: 5%;
     left: 1%;
@@ -510,7 +517,7 @@ body {
 }
 
 @media (max-width: 450px){
-  .devanagari-wrapper {
+  .devanagari-wrapper .devnagri-static-wrapper{
     position: absolute;
     top: 5%;
     left: 0%;
@@ -519,7 +526,7 @@ body {
 }
 
 @media (max-width: 425px){
-  .devanagari-wrapper {
+  .devanagari-wrapper .devnagri-static-wrapper{
     position: absolute;
     top: 5%;
     left: -4%;
@@ -528,7 +535,7 @@ body {
 }
 
 @media (max-width: 400px){
-  .devanagari-wrapper {
+  .devanagari-wrapper .devnagri-static-wrapper{
     position: absolute;
     top: 5%;
     left: -12%;
@@ -537,7 +544,7 @@ body {
 }
 
 @media (max-width: 375px){
-  .devanagari-wrapper {
+  .devanagari-wrapper .devnagri-static-wrapper{
     position: absolute;
     top: 5%;
     left: -16%;
@@ -546,7 +553,7 @@ body {
 }
 
 @media (max-width: 350px){
-  .devanagari-wrapper {
+  .devanagari-wrapper .devnagri-static-wrapper{
     position: absolute;
     top: 5%;
     left: -21%;
@@ -555,7 +562,7 @@ body {
 }
 
 @media (max-width: 325px){
-  .devanagari-wrapper {
+  .devanagari-wrapper .devnagri-static-wrapper{
     position: absolute;
     top: 5%;
     left: -24%;
@@ -564,7 +571,7 @@ body {
 }
 
 @media (max-width: 300px){
-  .devanagari-wrapper {
+  .devanagari-wrapper .devnagri-static-wrapper {
     position: absolute;
     top: 5%;
     left: -19%;

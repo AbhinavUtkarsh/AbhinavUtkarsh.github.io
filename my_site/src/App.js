@@ -31,10 +31,15 @@ function App() {
     return ua.indexOf('safari') !== -1 && ua.indexOf('chrome') === -1;
   };
 
+  //If the device is mobile
+  const isMobile = () => {
+    return /Mobi|Android/i.test(navigator.userAgent);
+  };
+
   return (
     <div className="App">
       <header className="header">
-        <link rel="icon" type="image/png" href={myicon} />
+        {!isMobile() && <link rel="icon" type="image/png" href={myicon} />}
         <div className="devnagri-static-wrapper">
         {isSafari() && (
           <span className="devanagari-text">नमस्ते</span>

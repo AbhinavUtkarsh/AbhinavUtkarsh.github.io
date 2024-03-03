@@ -25,18 +25,29 @@ function App() {
     window.scrollTo(0, 0);
   };
 
+  // If the browser is Safari
+  const isSafari = () => {
+    const ua = navigator.userAgent.toLowerCase();
+    return ua.indexOf('safari') !== -1 && ua.indexOf('chrome') === -1;
+  };
+
   return (
     <div className="App">
       <header className="header">
         <link rel="icon" type="image/png" href={myicon} />
         <div className="devanagari-wrapper">
-          <svg id="namasteSvg" width="500" height="200" xmlns="http://www.w3.org/2000/svg">
-            <text x="0" y="150" className="letter">
-              <tspan className="letter" style={{ animationDelay: '0s' }}>न</tspan>
-              <tspan className="letter" style={{ animationDelay: '1s' }}>म</tspan>
-              <tspan className="letter" style={{ animationDelay: '2s' }}>स्ते</tspan>
-            </text>
-          </svg>
+          {/* Render static text for Safari */}
+          {isSafari() ? (
+            <span className="devanagari-text">नमस्ते</span>
+          ) : (
+            <svg id="namasteSvg" width="500" height="200" xmlns="http://www.w3.org/2000/svg">
+              <text x="0" y="150" className="letter">
+                <tspan className="letter" style={{ animationDelay: '0s' }}>न</tspan>
+                <tspan className="letter" style={{ animationDelay: '1s' }}>म</tspan>
+                <tspan className="letter" style={{ animationDelay: '2s' }}>स्ते</tspan>
+              </text>
+            </svg>
+          )}
         </div>
         <h1 className="name">ABHINAV</h1>
         <h1 className="name2"><br />UTKARSH</h1>

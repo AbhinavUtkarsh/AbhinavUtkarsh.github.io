@@ -1,0 +1,103 @@
+h1 {
+  font-size: 3rem;
+  font-family: 'Nunito', sans-serif;
+  text-align: left;
+  margin: 1rem 0;
+  position: relative;
+  letter-spacing: 0.31rem;
+  color: white;
+  padding: 5rem;
+}
+
+.search-bar {
+  padding: 1.4rem;
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  border-radius: 2.5rem;
+  outline: none;
+  width: 100%;
+  max-width: 600px;
+  box-sizing: border-box;
+  background-color: rgba(134, 134, 139, 0.07);
+  color: white;
+  font-family: 'Nunito', sans-serif;
+  margin: 0;
+}
+
+.search-container {
+  width: 100%;
+  max-width: 1200px;
+  padding: 2rem;
+  margin-top: 0rem;
+  margin-bottom: 2.5rem;
+}
+
+.projects-container {
+  padding-bottom: 3rem;
+}
+
+.back-button {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  background-color: rgba(134, 134, 139, 0.07);
+  color: white;
+  border: none;
+  border-radius: 1rem;
+  padding: 0.7rem 0.9rem;
+  font-family: 'Nunito', sans-serif;
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: background-color 0.45s ease;
+  margin-left: 1.5rem;
+  margin-top: 1.5rem;
+}
+
+.back-button:hover {
+  background-color: gray;
+}
+
+.back-button:before {
+  content: "< ";
+  font-size: 1.5em;
+  position: relative;
+  top: 1.5px;
+}
+
+@media (max-width: 768px) {
+  .search-container {
+      padding-left: 0;
+      padding-right: 0;
+      padding-top: 2rem;
+      padding-bottom: 2rem;
+  }
+
+  h1 {
+      font-size: 2rem;
+      padding: 2rem 0;
+      letter-spacing: 0.25rem;
+  }
+
+  .search-bar {
+      padding: 1.4rem;
+      width: calc(100% - 2.8rem);
+      margin: 0 auto;
+  }
+
+  .project-box {
+      margin: 1.25rem;
+      width: calc(100% - 4.5rem);
+  }
+
+  .projects-container {
+      width: auto;
+      padding: 0;
+      padding-bottom: 2rem;
+  }
+
+  .back-button {
+      margin-left: 0rem;
+      margin-top: 0rem;
+      padding: 0.7rem 0.9rem;
+      border-radius: 1rem;
+  }
+}

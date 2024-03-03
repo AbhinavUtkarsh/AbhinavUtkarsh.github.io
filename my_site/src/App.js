@@ -35,11 +35,13 @@ function App() {
     <div className="App">
       <header className="header">
         <link rel="icon" type="image/png" href={myicon} />
+        <div className="devnagri-static-wrapper">
+        {isSafari() && (
+          <span className="devanagari-text">नमस्ते</span>
+          )}
+        </div>
         <div className="devanagari-wrapper">
-          {/* Render static text for Safari */}
-          {isSafari() ? (
-            <span className="devanagari-text static">नमस्ते</span>
-          ) : (
+          {!isSafari() && (
             <svg id="namasteSvg" width="500" height="200" xmlns="http://www.w3.org/2000/svg">
               <text x="0" y="150" className="letter">
                 <tspan className="letter" style={{ animationDelay: '0s' }}>न</tspan>

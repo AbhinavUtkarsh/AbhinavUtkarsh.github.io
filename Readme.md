@@ -3,6 +3,7 @@
 
 
 ###### Version History:
+- v0.2.1 : Mar 3, 2024, Dynamic greeting and icon added
 - v0.2.0 : Mar 3, 2024, search added & fixed UI glitches
 - v0.1.1 : Mar 1, 2024, Code cleanup, and projects added
 - v0.1.0 :  Feb 28, 2024, Switched to Reactjs

@@ -38,7 +38,7 @@ function App() {
         <div className="devanagari-wrapper">
           {/* Render static text for Safari */}
           {isSafari() ? (
-            <span className="devanagari-text">नमस्ते</span>
+            <span className="devanagari-text static">नमस्ते</span>
           ) : (
             <svg id="namasteSvg" width="500" height="200" xmlns="http://www.w3.org/2000/svg">
               <text x="0" y="150" className="letter">

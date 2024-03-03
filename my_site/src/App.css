@@ -18,6 +18,13 @@
   padding-top: 1rem;
   padding-bottom: 1rem;
 }
+/* Devanagari static text for safari */
+.devanagari-text.static {
+  position: absolute;
+  top: 0;
+  left: 10%;
+  color: rgba(134, 134, 139, 0.4)
+}
 
 .devanagari-text {
   font-size: 6rem;

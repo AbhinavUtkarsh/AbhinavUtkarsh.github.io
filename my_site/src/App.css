@@ -28,9 +28,31 @@
 
 .devanagari-wrapper {
   position: absolute;
-  top: 2%;
-  left: 27%;
-  transform: translateX(-50%);
+  top: 0%;
+  transform: translateX(7%) translateY(-7%);
+}
+
+@keyframes drawText {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+svg text {
+  font-family: 'Noto Sans Devanagari', italic;
+  font-size: 6rem;
+  fill: none;
+  stroke: rgba(134, 134, 139, 0.45);
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  letter-spacing: 0.2rem;
+}
+
+svg .letter {
+  stroke-dasharray: 700;
+  stroke-dashoffset: 700;
+  animation: drawText 12s forwards;
 }
 
 .header {
@@ -46,6 +68,7 @@
   margin: 0 auto;
   width: 90%;
   padding-top: 5rem;
+  position: relative;
 }
 
 .name {
@@ -361,13 +384,185 @@ body {
 
   .devanagari-wrapper {
     position: absolute;
-    top: 0.5%;
-    left: 50%;
-    transform: translateX(-50%);
+    top: 5%;
+    left: 21%;
+    transform: translate(22%, -55%);
   }
 
   .footer {
     position: relative;
     padding-top: 3rem;
+  }
+}
+
+/* Dynamic text centering manually, bug: doesn´t center automatically */
+@media (max-width: 750px){
+  .devanagari-wrapper {
+    position: absolute;
+    top: 5%;
+    left: 20%;
+    transform: translate(22%, -55%);
+  }
+}
+
+@media (max-width: 725px){
+  .devanagari-wrapper {
+    position: absolute;
+    top: 5%;
+    left: 19%;
+    transform: translate(22%, -55%);
+  }
+}
+
+@media (max-width: 700px){
+  .devanagari-wrapper {
+    position: absolute;
+    top: 5%;
+    left: 18%;
+    transform: translate(22%, -55%);
+  }
+}
+
+@media (max-width: 675px){
+  .devanagari-wrapper {
+    position: absolute;
+    top: 5%;
+    left: 17%;
+    transform: translate(22%, -55%);
+  }
+}
+
+@media (max-width: 650px){
+  .devanagari-wrapper {
+    position: absolute;
+    top: 5%;
+    left: 15%;
+    transform: translate(22%, -55%);
+  }
+}
+
+@media (max-width: 625px){
+  .devanagari-wrapper {
+    position: absolute;
+    top: 5%;
+    left: 13%;
+    transform: translate(22%, -55%);
+  }
+}
+
+@media (max-width: 600px){
+  .devanagari-wrapper {
+    position: absolute;
+    top: 5%;
+    left: 12%;
+    transform: translate(22%, -55%);
+  }
+}
+
+@media (max-width: 575px){
+  .devanagari-wrapper {
+    position: absolute;
+    top: 5%;
+    left: 10%;
+    transform: translate(22%, -55%);
+  }
+}
+
+@media (max-width: 550px){
+  .devanagari-wrapper {
+    position: absolute;
+    top: 5%;
+    left: 8%;
+    transform: translate(22%, -55%);
+  }
+}
+
+@media (max-width: 525px){
+  .devanagari-wrapper {
+    position: absolute;
+    top: 5%;
+    left: 5%;
+    transform: translate(22%, -55%);
+  }
+}
+
+@media (max-width: 500px){
+  .devanagari-wrapper {
+    position: absolute;
+    top: 5%;
+    left: 5%;
+    transform: translate(22%, -55%);
+  }
+}
+
+@media (max-width: 475px){
+  .devanagari-wrapper {
+    position: absolute;
+    top: 5%;
+    left: 1%;
+    transform: translate(22%, -55%);
+  }
+}
+
+@media (max-width: 450px){
+  .devanagari-wrapper {
+    position: absolute;
+    top: 5%;
+    left: 0%;
+    transform: translate(22%, -55%);
+  }
+}
+
+@media (max-width: 425px){
+  .devanagari-wrapper {
+    position: absolute;
+    top: 5%;
+    left: -4%;
+    transform: translate(22%, -55%);
+  }
+}
+
+@media (max-width: 400px){
+  .devanagari-wrapper {
+    position: absolute;
+    top: 5%;
+    left: -12%;
+    transform: translate(22%, -55%);
+  }
+}
+
+@media (max-width: 375px){
+  .devanagari-wrapper {
+    position: absolute;
+    top: 5%;
+    left: -16%;
+    transform: translate(22%, -55%);
+  }
+}
+
+@media (max-width: 350px){
+  .devanagari-wrapper {
+    position: absolute;
+    top: 5%;
+    left: -21%;
+    transform: translate(22%, -55%);
+  }
+}
+
+@media (max-width: 325px){
+  .devanagari-wrapper {
+    position: absolute;
+    top: 5%;
+    left: -24%;
+    transform: translate(22%, -55%);
+  }
+}
+
+@media (max-width: 300px){
+  .devanagari-wrapper {
+    position: absolute;
+    top: 5%;
+    left: -19%;
+    transform: translate(22%, -55%);
   }
 }

@@ -55,6 +55,11 @@ svg .letter {
   animation: drawText 12s forwards;
 }
 
+.letter {
+  -webkit-font-smoothing: none;
+  -moz-osx-font-smoothing: grayscale;
+}
+
 .header {
   display: grid;
   grid-template-columns: 3fr 2fr;

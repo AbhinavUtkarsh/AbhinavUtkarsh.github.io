@@ -3,6 +3,7 @@ import './App.css';
 import './ProjectList.css';
 import { useNavigate } from 'react-router-dom';
 import projectData from './Projects.json';
+import ROS2 from './images/ROS_2.png'; // image imports from project list json is not working, hence importing here
 
 function ProjectList() {
   const [searchTerm, setSearchTerm] = useState('');
@@ -83,11 +84,22 @@ function ProjectList() {
               <div className={`project-box ${!project.image ? 'no-image' : ''}`}>
                 <div className="project-content">
                   <h3>{project.title}</h3>
+                  <p className="team">{project.team}</p>
                   <p className="institute">{project.institute}</p>
                   <p className='description'>{project.description}</p>
                   <div className="keywords">{project.keywords.join(', ')}</div>
                 </div>
-                {project.image && (
+                {project.title === "Autonomous Drones with ROS" && (
+                  <div
+                    className="project-image-placeholder"
+                    style={{
+                      backgroundImage: `url(${ROS2})`, // Use ROS2 image as import from json file is not working
+                      backgroundSize: 'cover',
+                      backgroundPosition: 'center'
+                    }}
+                  />
+                )}
+                {project.image && project.title !== "Autonomous Drones with ROS" && (
                   <div
                     className="project-image-placeholder"
                     style={{

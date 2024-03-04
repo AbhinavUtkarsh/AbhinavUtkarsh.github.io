@@ -68,17 +68,10 @@ function AppDe() {
     <div className="App">
       <header className="header">
         {!isMobile() && <link rel="icon" type="image/png" href={myicon} />}
-        <div className="devnagri-static-wrapper">
-          {isSafari() && (
-            <span className="devanagari-text">नमस्ते</span>
-          )}
-        </div>
         <div className="hey-wrapper">
-          {!isSafari() && (
-            <svg width="500" height="200" xmlns="http://www.w3.org/2000/svg">
-              <text  x="10" y="150" className='hey-text'>Servus!</text>
-            </svg>
-          )}
+          <svg width="500" height="200" xmlns="http://www.w3.org/2000/svg">
+            <text  x="10" y="150" className='hey-text'>Servus!</text>
+          </svg>
         </div>
         <h1 className="name">ABHINAV</h1>
         <h1 className="name2"><br />UTKARSH</h1>

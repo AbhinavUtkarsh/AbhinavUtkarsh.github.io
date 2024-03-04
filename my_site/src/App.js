@@ -7,7 +7,7 @@ import { faGithub, faLinkedin } from '@fortawesome/free-brands-svg-icons';
 import profilePic from './images/profile.png';
 import myicon from './images/myicon.png';
 import ProjectList from './ProjectList';
-import { BrowserRouter as Router, Routes, Route, useNavigate } from 'react-router-dom';
+import { HashRouter, Routes, Route, useNavigate } from 'react-router-dom'; // Removed unused BrowserRouter
 import ProjectsData from './Projects.json';
 import IntroData from './Intro.json';
 import ROS2 from './images/ROS_2.png'; //image imports from project list json is not working, hence importing here
@@ -28,6 +28,7 @@ function App() {
   };
 
   //If the browser is Safari
+  // eslint-disable-next-line
   const isSafari = () => {
     const ua = navigator.userAgent.toLowerCase();
     return ua.indexOf('safari') !== -1 && ua.indexOf('chrome') === -1;
@@ -156,13 +157,13 @@ function App() {
 
 function AppWrapper() {
   return (
-    <Router>
+    <HashRouter>
       <Routes>
         <Route path="/" element={<App />} />
         <Route path="/de" element={<AppDe />} />
         <Route path="/projects" element={<ProjectList />} />
       </Routes>
-    </Router>
+    </HashRouter>
   );
 }
 

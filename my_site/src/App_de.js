@@ -82,7 +82,7 @@ function AppDe() {
         <h1 className="name">ABHINAV</h1>
         <h1 className="name2"><br />UTKARSH</h1>
         <div className="icon-container">
-          <a href="https://github.com/AbhinavUwtkarsh" target="_blank" rel="noopener noreferrer">
+          <a href="https://github.com/AbhinavUtkarsh" target="_blank" rel="noopener noreferrer">
             <FontAwesomeIcon icon={faGithub} />
           </a>
           <a href="https://www.linkedin.com/in/abhinavutkarsh" target="_blank" rel="noopener noreferrer">

@@ -71,11 +71,13 @@ function App() {
     <div className="App">
       <header className="header">
         {!isMobile() && <link rel="icon" type="image/png" href={myicon} />}
-        <div className="devnagri-static-wrapper">
           {isSafari() && (
-            <span className="devanagari-text">नमस्ते</span>
-          )}
+            <div className="hey-wrapper2">
+          <svg width="500" height="200" xmlns="http://www.w3.org/2000/svg">
+            <text  x="50" y="150" className='hey-text'>Hey!</text>
+          </svg>
         </div>
+          )}
         <div className="devanagari-wrapper">
           {!isSafari() && (
             <svg id="namasteSvg" width="500" height="200" xmlns="http://www.w3.org/2000/svg">
@@ -96,7 +98,7 @@ function App() {
           <a href="https://www.linkedin.com/in/abhinavutkarsh" target="_blank" rel="noopener noreferrer">
             <FontAwesomeIcon icon={faLinkedin} />
           </a>
-          <a href="mailto:abhinav.utkarsh@tum.de">
+          <a href="mailto:abhinav(dot)utkarsh(@)tum.de">
             <FontAwesomeIcon icon={faEnvelope} />
           </a>
         </div>

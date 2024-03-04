@@ -3,6 +3,7 @@
 
 
 ###### Version History:
+- v0.2.3 : Mar 4, 2024, hash routing added, greeting alignment fixed
 - v0.2.2 : Mar 4, 2024, DE version added and greeting location for mobile windows fixed
 - v0.2.1 : Mar 3, 2024, Dynamic greeting and icon added
 - v0.2.0 : Mar 3, 2024, search added & fixed UI glitches

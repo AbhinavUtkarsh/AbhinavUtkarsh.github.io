@@ -25,12 +25,6 @@ function AppDe() {
     window.scrollTo(0, 0);
   };
 
-  //If the browser is Safari
-  const isSafari = () => {
-    const ua = navigator.userAgent.toLowerCase();
-    return ua.indexOf('safari') !== -1 && ua.indexOf('chrome') === -1;
-  };
-
   //If the device is mobile
   const isMobile = () => {
     return /Mobi|Android/i.test(navigator.userAgent);
@@ -82,7 +76,7 @@ function AppDe() {
           <a href="https://www.linkedin.com/in/abhinavutkarsh" target="_blank" rel="noopener noreferrer">
             <FontAwesomeIcon icon={faLinkedin} />
           </a>
-          <a href="mailto:abhinav.utkarsh@tum.de">
+          <a href="mailto:abhinav(dot)utkarsh(@)tum.de">
             <FontAwesomeIcon icon={faEnvelope} />
           </a>
         </div>
@@ -102,6 +96,7 @@ function AppDe() {
               <div className={`project-box ${!project.image ? 'no-image' : ''}`}>
                 <div className="project-content">
                   <h3>{project.title}</h3>
+                  <p className="team">{project.team}</p>
                   <p className="institute">{project.instituteDE}</p>
                   <p className='description'>{project.description}</p>
                   <div className="keywords">{project.keywords.join(', ')}</div>

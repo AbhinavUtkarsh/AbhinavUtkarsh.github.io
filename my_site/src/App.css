@@ -339,7 +339,14 @@ body {
 
 .hey-wrapper {
   position: absolute;
-  top: 0%;
+  top: -2%;
+  transform: translateX(7%) translateY(-7%);
+}
+
+.hey-wrapper2 {
+  position: absolute;
+  top: -3%;
+  left: -3%;
   transform: translateX(7%) translateY(-7%);
 }
 
@@ -476,7 +483,7 @@ body {
     transform: translate(22%, -55%);
   }
 
-  .hey-wrapper {
+  .hey-wrapper, .hey-wrapper2 {
     position: absolute;
     top: 5%;
     left: 21%;
@@ -504,7 +511,7 @@ body {
     transform: translate(22%, -55%);
   }
 
-  .hey-wrapper {
+  .hey-wrapper, .hey-wrapper2 {
     position: absolute;
     top: 5%;
     left: 20%;
@@ -525,7 +532,7 @@ body {
     left: 19%;
     transform: translate(22%, -55%);
   }
-  .hey-wrapper {
+  .hey-wrapper, .hey-wrapper2 {
     position: absolute;
     top: 5%;
     left: 19%;
@@ -546,7 +553,7 @@ body {
     left: 18%;
     transform: translate(22%, -55%);
   }
-  .hey-wrapper {
+  .hey-wrapper, .hey-wrapper2 {
     position: absolute;
     top: 5%;
     left: 18%;
@@ -567,7 +574,7 @@ body {
     left: 17%;
     transform: translate(22%, -55%);
   }
-  .hey-wrapper {
+  .hey-wrapper, .hey-wrapper2 {
     position: absolute;
     top: 5%;
     left: 17%;
@@ -588,7 +595,7 @@ body {
     left: 15%;
     transform: translate(22%, -55%);
   }
-  .hey-wrapper {
+  .hey-wrapper, .hey-wrapper2 {
     position: absolute;
     top: 5%;
     left: 15%;
@@ -609,7 +616,7 @@ body {
     left: 13%;
     transform: translate(22%, -55%);
   }
-  .hey-wrapper {
+  .hey-wrapper, .hey-wrapper2 {
     position: absolute;
     top: 5%;
     left: 13%;
@@ -630,7 +637,7 @@ body {
     left: 12%;
     transform: translate(22%, -55%);
   }
-  .hey-wrapper {
+  .hey-wrapper, .hey-wrapper2 {
     position: absolute;
     top: 5%;
     left: 12%;
@@ -651,7 +658,7 @@ body {
     left: 10%;
     transform: translate(22%, -55%);
   }
-  .hey-wrapper {
+  .hey-wrapper, .hey-wrapper2 {
     position: absolute;
     top: 5%;
     left: 10%;
@@ -672,7 +679,7 @@ body {
     left: 8%;
     transform: translate(22%, -55%);
   }
-  .hey-wrapper {
+  .hey-wrapper, .hey-wrapper2 {
     position: absolute;
     top: 5%;
     left: 8%;
@@ -693,7 +700,7 @@ body {
     left: 5%;
     transform: translate(22%, -55%);
   }
-  .hey-wrapper {
+  .hey-wrapper, .hey-wrapper2 {
     position: absolute;
     top: 5%;
     left: 5%;
@@ -714,7 +721,7 @@ body {
     left: 5%;
     transform: translate(22%, -55%);
   }
-  .hey-wrapper {
+  .hey-wrapper, .hey-wrapper2 {
     position: absolute;
     top: 5%;
     left: 5%;
@@ -735,7 +742,7 @@ body {
     left: 1%;
     transform: translate(22%, -55%);
   }
-  .hey-wrapper {
+  .hey-wrapper, .hey-wrapper2 {
     position: absolute;
     top: 5%;
     left: 1%;
@@ -756,7 +763,7 @@ body {
     left: 0%;
     transform: translate(22%, -55%);
   }
-  .hey-wrapper {
+  .hey-wrapper, .hey-wrapper2 {
     position: absolute;
     top: 5%;
     left: 0%;
@@ -777,7 +784,7 @@ body {
     left: -2%;
     transform: translate(22%, -55%);
   }
-  .hey-wrapper {
+  .hey-wrapper, .hey-wrapper2 {
     position: absolute;
     top: 5%;
     left: -2%;
@@ -798,7 +805,7 @@ body {
     left: -4%;
     transform: translate(22%, -55%);
   }
-  .hey-wrapper {
+  .hey-wrapper, .hey-wrapper2 {
     position: absolute;
     top: 5%;
     left: -4%;
@@ -819,7 +826,7 @@ body {
     left: -6%;
     transform: translate(22%, -55%);
   }
-  .hey-wrapper {
+  .hey-wrapper, .hey-wrapper2 {
     position: absolute;
     top: 5%;
     left: -6%;
@@ -840,7 +847,7 @@ body {
     left: -9%;
     transform: translate(22%, -55%);
   }
-  .hey-wrapper {
+  .hey-wrapper, .hey-wrapper2 {
     position: absolute;
     top: 5%;
     left: -9%;
@@ -861,7 +868,7 @@ body {
     left: -12%;
     transform: translate(22%, -55%);
   }
-  .hey-wrapper {
+  .hey-wrapper, .hey-wrapper2 {
     position: absolute;
     top: 5%;
     left: -12%;
@@ -882,7 +889,7 @@ body {
     left: -15%;
     transform: translate(22%, -55%);
   }
-  .hey-wrapper {
+  .hey-wrapper, .hey-wrapper2 {
     position: absolute;
     top: 5%;
     left: -15%;
@@ -903,7 +910,7 @@ body {
     left: -18%;
     transform: translate(22%, -55%);
   }
-  .hey-wrapper {
+  .hey-wrapper, .hey-wrapper2 {
     position: absolute;
     top: 5%;
     left: -18%;

@@ -58,6 +58,18 @@ function AppDe() {
     };
   }, []);
   
+    const encodeEmail = () => {
+      const usernameParts = ['abhinav', 'utkarsh'];
+      const domainParts = ['tum', 'de'];
+      const username = usernameParts.join('.');
+      const domain = domainParts.join('.');
+      return `mailto:${username}@${domain}`;
+    };
+    
+    const handleEmailClick = () => {
+      window.location.href = encodeEmail();
+    };
+
   return (
     <div className="App">
       <header className="header">
@@ -76,7 +88,8 @@ function AppDe() {
           <a href="https://www.linkedin.com/in/abhinavutkarsh" target="_blank" rel="noopener noreferrer">
             <FontAwesomeIcon icon={faLinkedin} />
           </a>
-          <a href="mailto:abhinav(dot)utkarsh(@)tum.de">
+          {/* eslint-disable-next-line */}
+          <a href="#" onClick={handleEmailClick}>
             <FontAwesomeIcon icon={faEnvelope} />
           </a>
         </div>

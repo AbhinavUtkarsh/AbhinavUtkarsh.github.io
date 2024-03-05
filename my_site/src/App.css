@@ -14,7 +14,6 @@
   width: 100%;
   overflow-x: hidden;
   position: relative;
-  overflow-y: scroll;
   padding-top: 1rem;
   padding-bottom: 1rem;
 }
@@ -306,6 +305,15 @@ h3 {
 html,
 body {
   background-color: #101010;
+}
+
+html::-webkit-scrollbar {
+  display: none;
+}
+
+body {
+  -ms-overflow-style: none; 
+  scrollbar-width: none;
 }
 
 @font-face {

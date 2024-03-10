@@ -119,7 +119,7 @@ function App() {
           <img src={profilePic} alt="Abhinav Utkarsh" className="profile-photo" />
         </div>
         <p className="intro-text">{IntroData.introText}</p>
-        <button className="language-toggle-btn" onClick={toggleLanguage}>
+        <button className="language-toggle-btn" onClick={toggleLanguage} onTouchStart={toggleLanguage}>
           {language}
         </button>
       </header>
@@ -161,7 +161,7 @@ function App() {
             </a>
           ))}
         </div>
-        <button onClick={handleViewMoreClick} className="view-more-btn">View More</button>
+        <button onClick={handleViewMoreClick} onTouchStart={handleViewMoreClick} className="view-more-btn">View More</button>
       </section>
       <footer className="footer">
         © Abhinav Utkarsh 2024

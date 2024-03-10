@@ -97,7 +97,7 @@ function AppDe() {
           <img src={profilePic} alt="Abhinav Utkarsh" className="profile-photo" />
         </div>
         <p className="intro-text">{IntroData.introText_DE}</p>
-        <button className="language-toggle-btn" onClick={toggleLanguage}>
+        <button className="language-toggle-btn" onClick={toggleLanguage} onTouchStart={toggleLanguage}>
           {language}
         </button>
       </header>
@@ -139,7 +139,7 @@ function AppDe() {
             </a>
           ))}
         </div>
-        <button onClick={handleViewMoreClick} className="view-more-btn">Mehr anzeigen</button>
+        <button onClick={handleViewMoreClick} onTouchStart={handleViewMoreClick} className="view-more-btn">Mehr anzeigen</button>
       </section>
       <footer className="footer">
         © Abhinav Utkarsh 2024

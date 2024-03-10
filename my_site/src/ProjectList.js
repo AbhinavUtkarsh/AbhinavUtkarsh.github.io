@@ -65,7 +65,7 @@ function ProjectList() {
 
   return (
     <div className="App">
-      <button onClick={handleBackClick} className="back-button">
+      <button onClick={handleBackClick} onTouchStart={handleBackClick} className="back-button">
         Back
       </button>
       <h1>Projects</h1>

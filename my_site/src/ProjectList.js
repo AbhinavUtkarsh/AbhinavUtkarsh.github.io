@@ -5,6 +5,16 @@ import { useNavigate } from 'react-router-dom';
 import projectData from './Projects.json';
 import ROS2 from './images/ROS_2.png'; // image imports from project list json is not working, hence importing here
 
+function debounce(func, delay) {
+  let timeoutId;
+  return function(...args) {
+    clearTimeout(timeoutId);
+    timeoutId = setTimeout(() => {
+      func.apply(this, args);
+    }, delay);
+  };
+}
+
 function ProjectList() {
   const [searchTerm, setSearchTerm] = useState('');
   const [placeholder, setPlaceholder] = useState('');
@@ -63,10 +73,12 @@ function ProjectList() {
     setTimeout(() => window.scrollTo(0, 0), 100);
   };
 
+  const debouncedHandleBackClick = debounce(handleBackClick, 300);
+
   return (
-    <div className="App">
-      <button onClick={handleBackClick} onTouchStart={handleBackClick} className="back-button">
-        Back
+    <div className="App fade-in">
+      <button onClick={debouncedHandleBackClick} onTouchStart={debouncedHandleBackClick} className="back-button">
+      ↩ Back
       </button>
       <h1>Projects</h1>
       <div className="search-container">

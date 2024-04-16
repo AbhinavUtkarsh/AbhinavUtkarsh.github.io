@@ -238,16 +238,19 @@ h3 {
   color: #666;
   text-align: left;
   font-style: italic;
+  font-weight: 900;
 }
 
 .institute {
   font-size: 1rem;
   color: #666;
   text-align: left;
+  font-weight: 900;
 }
 
 .description {
-  font-size: 0.9rem;
+  font-size: 1rem;
+  font-weight: 1000;
   margin-top: 0.3rem;
   text-align: left;
   color: white;
@@ -260,6 +263,7 @@ h3 {
   margin-top: 10px;
   color: #444;
   text-align: right;
+  font-weight: 700;
 }
 
 .project-image-placeholder {

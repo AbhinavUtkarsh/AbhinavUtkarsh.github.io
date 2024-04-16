@@ -3,6 +3,7 @@
 
 
 ###### Version History:
+- v0.3.1 : April 16, 2024,  UI imrpovements and seminar added
 - v0.3.0 : Mar 12, 2024,  Debouncing added, and UI improvements
 - v0.2.3 : Mar 4, 2024, hash routing added, greeting alignment fixed
 - v0.2.2 : Mar 4, 2024, DE version added and greeting location for mobile windows fixed

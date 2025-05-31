@@ -3,6 +3,7 @@
 
 
 ###### Version History:
+- v0.4.0 : May 31, 2025,  Added master thesis and intro updated
 - v0.3.1 : April 16, 2024,  UI imrpovements and seminar added
 - v0.3.0 : Mar 12, 2024,  Debouncing added, and UI improvements
 - v0.2.3 : Mar 4, 2024, hash routing added, greeting alignment fixed

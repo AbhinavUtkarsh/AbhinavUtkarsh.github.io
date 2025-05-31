@@ -4,6 +4,7 @@ import './ProjectList.css';
 import { useNavigate } from 'react-router-dom';
 import projectData from './Projects.json';
 import ROS2 from './images/ROS_2.png'; // image imports from project list json is not working, hence importing here
+import EMOGA from './images/EMOGA.png'; // image imports from project list json is not working, hence importing here
 
 function debounce(func, delay) {
   let timeoutId;
@@ -20,8 +21,8 @@ function ProjectList() {
   const [placeholder, setPlaceholder] = useState('');
   const navigate = useNavigate();
 
-  useEffect(() => {
-    const keywords = ['3D Vision', 'Deep Learning', 'ROS', 'Thesis'];
+  useEffect(() =>  {
+    const keywords = ['3D Vision', 'Gaussian Splatting' , 'Diffusion Models', 'Deep Learning', 'Differentiable Rendering','ROS', 'Thesis'];
     let index = 0;
     let currentKeyword = keywords[index];
     let currentLetterIndex = 0;
@@ -101,25 +102,25 @@ function ProjectList() {
                   <p className='description'>{project.description}</p>
                   <div className="keywords">{project.keywords.join(', ')}</div>
                 </div>
-                {project.title === "Autonomous Drones with ROS" && (
-                  <div
-                    className="project-image-placeholder"
-                    style={{
-                      backgroundImage: `url(${ROS2})`, // Use ROS2 image as import from json file is not working
-                      backgroundSize: 'cover',
-                      backgroundPosition: 'center'
-                    }}
-                  />
+                {/* EMO-GA thumbnail */}
+                {project.title === 'Emotion-Driven Editing of GaussianAvatars' && (
+                <div className="project-image-placeholder">
+                <img src={EMOGA} alt={project.title} className="project-image" />
+                </div>
                 )}
-                {project.image && project.title !== "Autonomous Drones with ROS" && (
-                  <div
-                    className="project-image-placeholder"
-                    style={{
-                      backgroundImage: `url(${project.image})`,
-                      backgroundSize: 'cover',
-                      backgroundPosition: 'center'
-                    }}
-                  />
+                {/* ROS thumbnail */}
+                {project.title === "Autonomous Drones with ROS" && (
+                <div className="project-image-placeholder">
+                <img src={ROS2} alt={project.title} className="project-image" />
+                </div>
+                )}
+                {/* all other projects that carry an image field */}
+                {project.image &&
+                project.title !== "Autonomous Drones with ROS" &&
+                project.title !== "Emotion-Driven Editing of GaussianAvatars" && (
+                <div className="project-image-placeholder">
+                <img src={project.image} alt={project.title} className="project-image" />
+                </div>
                 )}
               </div>
             </a>

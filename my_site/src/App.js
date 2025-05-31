@@ -11,6 +11,7 @@ import { HashRouter, Routes, Route, useNavigate } from 'react-router-dom';
 import ProjectsData from './Projects.json';
 import IntroData from './Intro.json';
 import ROS2 from './images/ROS_2.png'; //image imports from project list json is not working, hence importing here
+import EMOGA from './images/EMOGA.png'; //image imports from project list json is not working, hence importing here
 import FadeInPageWrapper from './FadeInPageWrapper';
 
 function debounce(func, delay) {
@@ -152,27 +153,26 @@ function App() {
                     <p className='description'>{project.description}</p>
                     <div className="keywords">{project.keywords.join(', ')}</div>
                   </div>
-                  {project.title === 'Autonomous Drones with ROS' ? (
-                    <div
-                      className="project-image-placeholder"
-                      style={{
-                        backgroundImage: `url(${ROS2})`,
-                        backgroundSize: 'cover',
-                        backgroundPosition: 'center'
-                      }}
-                    />
-                  ) : (
-                    project.image && (
-                      <div
-                        className="project-image-placeholder"
-                        style={{
-                          backgroundImage: `url(${project.image})`,
-                          backgroundSize: 'cover',
-                          backgroundPosition: 'center'
-                        }}
-                      />
-                    )
-                  )}
+                {/* EMO-GA thumbnail */}
+                {project.title === 'Emotion-Driven Editing of GaussianAvatars' && (
+                <div className="project-image-placeholder">
+                <img src={EMOGA} alt={project.title} className="project-image" />
+                </div>
+                )}
+                {/* ROS thumbnail */}
+                {project.title === "Autonomous Drones with ROS" && (
+                <div className="project-image-placeholder">
+                <img src={ROS2} alt={project.title} className="project-image" />
+                </div>
+                )}
+                {/* all other projects that carry an image field */}
+                {project.image &&
+                project.title !== "Autonomous Drones with ROS" &&
+                project.title !== "Emotion-Driven Editing of GaussianAvatars" && (
+                <div className="project-image-placeholder">
+                <img src={project.image} alt={project.title} className="project-image" />
+                </div>
+                )}
                 </div>
               </a>
             ))}

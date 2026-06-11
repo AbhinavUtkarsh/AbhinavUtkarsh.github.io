@@ -47,12 +47,12 @@ function AppDe() {
 
   // Toggle between languages
   const toggleLanguage = () => {
-    setLanguage(language === 'DE' ? 'DE' : 'EN');
+    setLanguage(language === 'DE' ? 'EN' : 'DE');
 
-    if (language === 'EN') {
-      navigate('/App_de');
-    } else {
+    if (language === 'DE') {
       navigate('/');
+    } else {
+      navigate('/de');
     }
   };
 
@@ -94,7 +94,7 @@ function AppDe() {
           {!isMobile() && <link rel="icon" type="image/png" href={myicon} />}
           <div className="hey-wrapper">
             <svg width="500" height="200" xmlns="http://www.w3.org/2000/svg">
-              <text  x="10" y="150" className='hey-text'>Servus!</text>
+              <text x="250" y="150" textAnchor="middle" className='hey-text'>Servus!</text>
             </svg>
           </div>
           <h1 className="name">ABHINAV</h1>

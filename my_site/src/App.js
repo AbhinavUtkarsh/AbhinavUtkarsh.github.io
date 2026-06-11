@@ -103,14 +103,14 @@ function App() {
             {isSafari() && (
               <div className="hey-wrapper2">
             <svg width="500" height="200" xmlns="http://www.w3.org/2000/svg">
-              <text  x="50" y="150" className='hey-text'>Hey!</text>
+              <text x="250" y="150" textAnchor="middle" className='hey-text'>Hey!</text>
             </svg>
           </div>
             )}
           <div className="devanagari-wrapper">
             {!isSafari() && (
               <svg id="namasteSvg" width="500" height="200" xmlns="http://www.w3.org/2000/svg">
-                <text x="0" y="150" className="letter">
+                <text x="250" y="150" textAnchor="middle" className="letter">
                   <tspan className="letter" style={{ animationDelay: '0s' }}>न</tspan>
                   <tspan className="letter" style={{ animationDelay: '1s' }}>म</tspan>
                   <tspan className="letter" style={{ animationDelay: '2s' }}>स्ते</tspan>

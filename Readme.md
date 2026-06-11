@@ -3,6 +3,7 @@
 
 
 ###### Version History:
+- v0.4.1 : June 12, 2026,  Greeting centering fixed for all screen sizes, DE language toggle route fixed, automated tests added, build now outputs directly to /docs with favicon and CNAME included
 - v0.4.0 : May 31, 2025,  Added master thesis and intro updated
 - v0.3.1 : April 16, 2024,  UI imrpovements and seminar added
 - v0.3.0 : Mar 12, 2024,  Debouncing added, and UI improvements

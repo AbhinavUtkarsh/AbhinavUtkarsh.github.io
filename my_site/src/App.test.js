@@ -119,6 +119,19 @@ test('View More keeps the language', () => {
   expect(screen.getByRole('button', { name: /Zurück/ })).toBeInTheDocument();
 });
 
+test('a tap acts once, the click the browser synthesises after it is ignored', () => {
+  render(<AppWrapper />);
+  const toggle = screen.getByRole('button', { name: /Deutsch/i });
+
+  fireEvent.pointerDown(toggle, { pointerType: 'touch', clientX: 10, clientY: 10 });
+  fireEvent.pointerUp(toggle, { pointerType: 'touch', clientX: 10, clientY: 10 });
+  fireEvent.click(toggle);
+  advance();
+
+  // acting twice would switch to German and straight back
+  expect(screen.getByText('Aktuelle Projekte')).toBeInTheDocument();
+});
+
 test('search with no match reports it', () => {
   window.location.hash = '#/projects';
   render(<AppWrapper />);

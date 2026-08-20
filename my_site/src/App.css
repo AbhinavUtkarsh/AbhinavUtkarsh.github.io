@@ -368,7 +368,7 @@ body {
 }
 
 .view-more-btn {
-  transition: background-color var(--ease);
+  transition: background-color 240ms ease;
   color: var(--fg);
   font-family: 'Nunito', sans-serif;
   border-radius: var(--radius-md);
@@ -437,7 +437,7 @@ body {
   padding: 0.7rem 0.9rem;
   cursor: pointer;
   z-index: 1;
-  transition: background-color var(--ease), opacity var(--ease);
+  transition: background-color 240ms ease, opacity var(--ease);
   letter-spacing: 0.1rem;
   font-family: 'Nunito', sans-serif;
   font-size: 1rem;
@@ -477,12 +477,12 @@ body {
 .language-toggle-btn:active,
 .back-button:active {
   background-color: var(--surface-hover);
-  transition-duration: 0s;
+  transition-duration: 90ms;
 }
 
 .project-box-link:active .project-box {
   background-color: rgba(134, 134, 139, 0.14);
-  transition-duration: 0s;
+  transition-duration: 90ms;
 }
 
 /* keyboard-only, pointer users see nothing */
@@ -562,6 +562,11 @@ input:focus-visible {
     --name-ls: 0.5rem;
     align-items: center;
     margin: 3rem auto 0;
+  }
+
+  /* 1.5x the desktop proportion, the name is much smaller here */
+  .greeting {
+    width: 80%;
   }
 
   .name {

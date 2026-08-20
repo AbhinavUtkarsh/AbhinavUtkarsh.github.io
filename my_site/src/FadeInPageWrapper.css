@@ -7,8 +7,9 @@
   }
 }
 
+/* quick, just enough to take the edge off a route change */
 .fade-in {
-  animation: fadeIn 1s ease-in;
+  animation: fadeIn 220ms ease-out both;
 }
 
 @media (prefers-reduced-motion: reduce) {

@@ -21,6 +21,43 @@ export function useDebounced(fn, delay = 250) {
   };
 }
 
+// Module level, not per component: handling a tap navigates, which remounts the
+// button, so a per instance flag would be gone by the time the browser's
+// synthesised click arrives and that click would fire the new button too.
+let handledTapAt = 0;
+const SYNTHETIC_CLICK_WINDOW = 700;
+
+// Acts on finger lift rather than the synthesised click, which iOS swallows when
+// the tap also stops momentum scrolling. Mouse and keyboard still go via click.
+export function useTapHandlers(fn) {
+  const start = useRef(null);
+
+  return {
+    onPointerDown: (event) => {
+      start.current =
+        event.pointerType === 'mouse'
+          ? null
+          : { x: event.clientX, y: event.clientY, t: Date.now() };
+    },
+    onPointerUp: (event) => {
+      const from = start.current;
+      start.current = null;
+      if (!from) return;
+      const moved = Math.hypot(event.clientX - from.x, event.clientY - from.y);
+      // a drag is a scroll, not a tap
+      if (moved < 12 && Date.now() - from.t < 800) {
+        handledTapAt = Date.now();
+        fn(event);
+      }
+    },
+    onClick: (event) => {
+      // only skip the click that trails a tap we already handled
+      if (Date.now() - handledTapAt < SYNTHETIC_CLICK_WINDOW) return;
+      fn(event);
+    },
+  };
+}
+
 export const EMAIL = 'abhinav.utkarsh@tum.de';
 
 // Names the hyphenation dictionary gets wrong, e.g. "Gaussia-nAvatars".

@@ -6,7 +6,7 @@ import projectData from './Projects.json';
 import ProjectCard from './ProjectCard';
 import Footer from './Footer';
 import strings from './strings';
-import { useDebounced } from './utils';
+import { useTapHandlers } from './utils';
 
 const KEYWORDS = [
   '3D Vision',
@@ -74,7 +74,7 @@ function ProjectList({ lang = 'en' }) {
     document.documentElement.lang = lang;
   }, [lang]);
 
-  const goBack = useDebounced(() => {
+  const goBack = useTapHandlers(() => {
     // opened directly, there is nothing to go back to
     if (window.history.state && window.history.state.idx > 0) {
       navigate(-1);
@@ -88,8 +88,8 @@ function ProjectList({ lang = 'en' }) {
   const filtered = hasQuery ? search(projectData, searchTerm) : projectData;
 
   return (
-    <div className="App fade-in">
-      <button onClick={goBack} className="back-button">{t.back}</button>
+    <div className="App">
+      <button {...goBack} className="back-button">{t.back}</button>
 
       <h1 className="page-title">{t.projects}</h1>
 

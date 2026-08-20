@@ -12,7 +12,7 @@ import Footer from './Footer';
 import ProjectCard from './ProjectCard';
 import ProseText from './ProseText';
 import strings from './strings';
-import { EMAIL, useDebounced } from './utils';
+import { EMAIL, useTapHandlers } from './utils';
 import ProjectsData from './Projects.json';
 import IntroData from './Intro.json';
 import FadeInPageWrapper from './FadeInPageWrapper';
@@ -40,102 +40,103 @@ function Home({ lang }) {
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
-  const viewMore = useDebounced(() => {
+  const viewMore = useTapHandlers(() => {
     navigate(lang === 'de' ? '/de/projects' : '/projects');
     window.scrollTo(0, 0);
   });
 
-  const toggleLanguage = useDebounced(() => {
+  const toggleLanguage = useTapHandlers(() => {
     navigate(lang === 'en' ? '/de' : '/');
   });
 
   return (
-    <FadeInPageWrapper>
-      <div className="App">
-        <header className="header">
-          <div className="name-block">
-            {/* grouped so the greeting centres on the first name */}
-            <div className="name-line">
-              <Greeting />
-              <h1 className="name">ABHINAV</h1>
-            </div>
-            <h1 className="name name-last">UTKARSH</h1>
+    <div className="App">
+      <header className="header">
+        <div className="name-block">
+          {/* grouped so the greeting centres on the first name */}
+          <div className="name-line">
+            <Greeting />
+            <h1 className="name">ABHINAV</h1>
           </div>
+          <h1 className="name name-last">UTKARSH</h1>
+        </div>
 
-          <div className="photo-wrapper">
-            <img
-              src={profilePic}
-              width="400"
-              height="400"
-              alt="Abhinav Utkarsh"
-              className="profile-photo"
-            />
-          </div>
+        <div className="photo-wrapper">
+          <img
+            src={profilePic}
+            width="400"
+            height="400"
+            alt="Abhinav Utkarsh"
+            className="profile-photo"
+          />
+        </div>
 
-          <div className="icon-container">
-            <a
-              href="https://github.com/AbhinavUtkarsh"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="GitHub"
-            >
-              <FontAwesomeIcon icon={faGithub} />
-            </a>
-            <a
-              href="https://www.linkedin.com/in/abhinavutkarsh"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="LinkedIn"
-            >
-              <FontAwesomeIcon icon={faLinkedin} />
-            </a>
-            <a href={`mailto:${EMAIL}`} aria-label="Email">
-              <FontAwesomeIcon icon={faEnvelope} />
-            </a>
-          </div>
-
-          <div className="intro-text" lang={t.lang}>
-            {intro.map((paragraph, i) => (
-              <p key={i}><ProseText>{paragraph}</ProseText></p>
-            ))}
-          </div>
-
-          <button
-            className={`language-toggle-btn${hideToggle ? ' hidden' : ''}`}
-            onClick={toggleLanguage}
-            aria-label={lang === 'en' ? 'Auf Deutsch anzeigen' : 'Show in English'}
+        <div className="icon-container">
+          <a
+            href="https://github.com/AbhinavUtkarsh"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="GitHub"
           >
-            {t.toggleLabel}
-          </button>
-        </header>
+            <FontAwesomeIcon icon={faGithub} />
+          </a>
+          <a
+            href="https://www.linkedin.com/in/abhinavutkarsh"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="LinkedIn"
+          >
+            <FontAwesomeIcon icon={faLinkedin} />
+          </a>
+          <a href={`mailto:${EMAIL}`} aria-label="Email">
+            <FontAwesomeIcon icon={faEnvelope} />
+          </a>
+        </div>
 
-        <section className="recent-projects">
-          <h2 className="section-title">{t.recentProjects}</h2>
-          <div className="projects-container">
-            {projects.map((project) => (
-              <ProjectCard key={project.title} project={project} lang={lang} />
-            ))}
-          </div>
-          <button onClick={viewMore} className="view-more-btn">{t.viewMore}</button>
-        </section>
+        <div className="intro-text" lang={t.lang}>
+          {intro.map((paragraph, i) => (
+            <p key={i}><ProseText>{paragraph}</ProseText></p>
+          ))}
+        </div>
 
-        <Footer lang={lang} />
-      </div>
-    </FadeInPageWrapper>
+        <button
+          className={`language-toggle-btn${hideToggle ? ' hidden' : ''}`}
+          {...toggleLanguage}
+          aria-label={lang === 'en' ? 'Auf Deutsch anzeigen' : 'Show in English'}
+        >
+          {t.toggleLabel}
+        </button>
+      </header>
+
+      <section className="recent-projects">
+        <h2 className="section-title">{t.recentProjects}</h2>
+        <div className="projects-container">
+          {projects.map((project) => (
+            <ProjectCard key={project.title} project={project} lang={lang} />
+          ))}
+        </div>
+        <button {...viewMore} className="view-more-btn">{t.viewMore}</button>
+      </section>
+
+      <Footer lang={lang} />
+    </div>
   );
 }
+
+// every route fades, not just the home page
+const page = (element) => <FadeInPageWrapper>{element}</FadeInPageWrapper>;
 
 function AppWrapper() {
   return (
     <HashRouter>
       <Routes>
-        <Route path="/" element={<Home lang="en" />} />
-        <Route path="/de" element={<Home lang="de" />} />
-        <Route path="/projects" element={<ProjectList lang="en" />} />
-        <Route path="/de/projects" element={<ProjectList lang="de" />} />
-        <Route path="/impressum" element={<Impressum lang="en" />} />
-        <Route path="/de/impressum" element={<Impressum lang="de" />} />
-        <Route path="*" element={<Home lang="en" />} />
+        <Route path="/" element={page(<Home lang="en" />)} />
+        <Route path="/de" element={page(<Home lang="de" />)} />
+        <Route path="/projects" element={page(<ProjectList lang="en" />)} />
+        <Route path="/de/projects" element={page(<ProjectList lang="de" />)} />
+        <Route path="/impressum" element={page(<Impressum lang="en" />)} />
+        <Route path="/de/impressum" element={page(<Impressum lang="de" />)} />
+        <Route path="*" element={page(<Home lang="en" />)} />
       </Routes>
     </HashRouter>
   );

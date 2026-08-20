@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './App.css';
 import './ProjectList.css';
-import { EMAIL, useDebounced } from './utils';
+import { EMAIL, useTapHandlers } from './utils';
 import Footer from './Footer';
 
 // Fill these in and the page picks them up. Empty renders as a blank line.
@@ -95,14 +95,14 @@ function Impressum({ lang = 'en' }) {
     document.documentElement.lang = lang;
   }, [lang]);
 
-  const goBack = useDebounced(() => {
+  const goBack = useTapHandlers(() => {
     navigate(lang === 'de' ? '/de' : '/');
     window.scrollTo(0, 0);
   });
 
   return (
     <div className="App">
-      <button onClick={goBack} className="back-button">{t.back}</button>
+      <button {...goBack} className="back-button">{t.back}</button>
 
       <section className="legal">
         <h1 className="legal-title">{t.title}</h1>

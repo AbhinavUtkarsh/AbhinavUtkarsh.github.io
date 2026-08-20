@@ -128,9 +128,10 @@ body {
   }
 }
 
-/* dash length is set per path, from the real outline length */
+/* dash length is set per path, from the real outline length.
+   linear, so the pen keeps an even speed instead of rushing the start */
 .greeting-svg .letter {
-  animation: drawText 12s forwards;
+  animation: drawText 15s linear forwards;
 }
 
 .name {

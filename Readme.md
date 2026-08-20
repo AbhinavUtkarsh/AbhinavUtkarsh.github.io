@@ -3,6 +3,7 @@
 
 
 ###### Version History:
+- v0.5.4 : August 20, 2026,  Slower page transition between routes
 - v0.5.3 : August 20, 2026,  Namaste 1.5x on mobile, soft fade between pages, material style tap feedback, buttons act on first tap
 - v0.5.2 : August 20, 2026,  Single tap activates buttons on touch, image sizes set to stop layout shift
 - v0.5.1 : August 20, 2026,  Namaste redrawn as SVG paths, fixes broken Devanagari shaping on iOS Safari and its size on mobile

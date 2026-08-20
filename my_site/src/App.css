@@ -171,7 +171,13 @@ body {
   min-height: 2.75rem;
 }
 
-.icon-container a:hover {
+@media (hover: hover) {
+  .icon-container a:hover {
+    color: var(--surface-hover);
+  }
+}
+
+.icon-container a:active {
   color: var(--surface-hover);
 }
 
@@ -293,9 +299,11 @@ body {
   display: block;
 }
 
-.project-box:hover {
-  box-shadow: 0 0 30px 15px rgba(255, 255, 255, 0.03);
-  transition: box-shadow 0.45s ease-out;
+@media (hover: hover) {
+  .project-box:hover {
+    box-shadow: 0 0 30px 15px rgba(255, 255, 255, 0.03);
+    transition: box-shadow 0.45s ease-out;
+  }
 }
 
 .project-content {
@@ -377,8 +385,10 @@ body {
   user-select: none;
 }
 
-.view-more-btn:hover {
-  background-color: var(--surface-hover);
+@media (hover: hover) {
+  .view-more-btn:hover {
+    background-color: var(--surface-hover);
+  }
 }
 
 /* footer, toggle, legal */
@@ -405,9 +415,15 @@ body {
   padding: 0.75rem 0.35rem;
 }
 
-.footer-link:hover {
+@media (hover: hover) {
+  .footer-link:hover {
+    color: var(--fg);
+    text-decoration: underline;
+  }
+}
+
+.footer-link:active {
   color: var(--fg);
-  text-decoration: underline;
 }
 
 .language-toggle-btn {
@@ -432,13 +448,41 @@ body {
   user-select: none;
 }
 
-.language-toggle-btn:hover {
-  background-color: var(--surface-hover);
+@media (hover: hover) {
+  .language-toggle-btn:hover {
+    background-color: var(--surface-hover);
+  }
 }
 
 .language-toggle-btn.hidden {
   opacity: 0;
   pointer-events: none;
+}
+
+/* Press state for touch. It has to be :active, not :hover, or the first tap
+   only applies the hover style and a second one is needed to activate.
+   touch-action removes the double-tap zoom delay. */
+.view-more-btn,
+.language-toggle-btn,
+.back-button,
+.icon-container a,
+.footer-link,
+.legal-link,
+.project-box-link {
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.view-more-btn:active,
+.language-toggle-btn:active,
+.back-button:active {
+  background-color: var(--surface-hover);
+  transition-duration: 0s;
+}
+
+.project-box-link:active .project-box {
+  background-color: rgba(134, 134, 139, 0.14);
+  transition-duration: 0s;
 }
 
 /* keyboard-only, pointer users see nothing */
@@ -491,8 +535,10 @@ input:focus-visible {
   padding: 0.45rem 0;
 }
 
-.legal-link:hover {
-  color: var(--muted);
+@media (hover: hover) {
+  .legal-link:hover {
+    color: var(--muted);
+  }
 }
 
 /* mobile */

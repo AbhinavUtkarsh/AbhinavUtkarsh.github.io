@@ -27,7 +27,14 @@ function ProjectCard({ project, lang = 'en' }) {
 
         {image && (
           <div className="project-image-placeholder">
-            <img src={image} alt={project.title} className="project-image" loading="lazy" />
+            <img
+              src={image.src}
+              width={image.width}
+              height={image.height}
+              alt={project.title}
+              className="project-image"
+              loading="lazy"
+            />
           </div>
         )}
       </div>

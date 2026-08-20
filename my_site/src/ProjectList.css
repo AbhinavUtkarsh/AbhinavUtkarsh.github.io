@@ -62,8 +62,10 @@
   user-select: none;
 }
 
-.back-button:hover {
-  background-color: var(--surface-hover);
+@media (hover: hover) {
+  .back-button:hover {
+    background-color: var(--surface-hover);
+  }
 }
 
 @media (max-width: 768px) {

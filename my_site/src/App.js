@@ -63,7 +63,13 @@ function Home({ lang }) {
           </div>
 
           <div className="photo-wrapper">
-            <img src={profilePic} alt="Abhinav Utkarsh" className="profile-photo" />
+            <img
+              src={profilePic}
+              width="400"
+              height="400"
+              alt="Abhinav Utkarsh"
+              className="profile-photo"
+            />
           </div>
 
           <div className="icon-container">

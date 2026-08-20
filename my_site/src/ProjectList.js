@@ -3,135 +3,117 @@ import './App.css';
 import './ProjectList.css';
 import { useNavigate } from 'react-router-dom';
 import projectData from './Projects.json';
-import ROS2 from './images/ROS_2.png'; // image imports from project list json is not working, hence importing here
-import EMOGA from './images/EMOGA.png'; // image imports from project list json is not working, hence importing here
+import ProjectCard from './ProjectCard';
+import Footer from './Footer';
+import strings from './strings';
+import { useDebounced } from './utils';
 
-function debounce(func, delay) {
-  let timeoutId;
-  return function(...args) {
-    clearTimeout(timeoutId);
-    timeoutId = setTimeout(() => {
-      func.apply(this, args);
-    }, delay);
-  };
-}
+const KEYWORDS = [
+  '3D Vision',
+  'Gaussian Splatting',
+  'Diffusion Models',
+  'Deep Learning',
+  'Differentiable Rendering',
+  'ROS',
+  'Thesis',
+];
 
-function ProjectList() {
-  const [searchTerm, setSearchTerm] = useState('');
-  const [placeholder, setPlaceholder] = useState('');
-  const navigate = useNavigate();
+const TYPE_MS = 300;
+const HOLD_MS = 800;
 
-  useEffect(() =>  {
-    const keywords = ['3D Vision', 'Gaussian Splatting' , 'Diffusion Models', 'Deep Learning', 'Differentiable Rendering','ROS', 'Thesis'];
-    let index = 0;
-    let currentKeyword = keywords[index];
-    let currentLetterIndex = 0;
-    let typingTimeout;
+// Cycles the keywords through the search placeholder, a letter at a time.
+function useTypedPlaceholder(words) {
+  const [text, setText] = useState(words[0].charAt(0));
 
-    setPlaceholder(currentKeyword.charAt(0));
+  useEffect(() => {
+    let word = 0;
+    let letter = 0;
+    let timer;
 
-    const typeNextLetter = () => {
-      if (currentLetterIndex < currentKeyword.length - 1) {
-        currentLetterIndex++;
-        setPlaceholder(prevPlaceholder => prevPlaceholder + currentKeyword[currentLetterIndex]);
+    const tick = () => {
+      const current = words[word];
+      if (letter < current.length - 1) {
+        letter += 1;
+        setText(current.slice(0, letter + 1));
+        timer = setTimeout(tick, TYPE_MS);
       } else {
-        clearInterval(typingTimeout);
-        setTimeout(() => {
-          index = (index + 1) % keywords.length;
-          currentKeyword = keywords[index];
-          currentLetterIndex = 0;
-          setPlaceholder(currentKeyword.charAt(0));
-          typingTimeout = setInterval(typeNextLetter, 300);
-        }, 800);
+        timer = setTimeout(() => {
+          word = (word + 1) % words.length;
+          letter = 0;
+          setText(words[word].charAt(0));
+          timer = setTimeout(tick, TYPE_MS);
+        }, HOLD_MS);
       }
     };
 
-    typingTimeout = setInterval(typeNextLetter, 300);
+    timer = setTimeout(tick, TYPE_MS);
+    return () => clearTimeout(timer);
+  }, [words]);
 
-    return () => clearInterval(typingTimeout);
-  }, []);
+  return text;
+}
 
-  const handleSearchChange = e => {
-    setSearchTerm(e.target.value.toLowerCase());
-  };
+// Single-letter terms match nearly everything, so they are ignored.
+function search(projects, term) {
+  const words = term.split(' ').filter((w) => w.length >= 2);
+  if (!words.length) return [];
+  return projects.filter((project) =>
+    words.some((word) =>
+      project.keywords.some((keyword) => keyword.toLowerCase().includes(word))
+    )
+  );
+}
 
-  const performSearch = (projects, term) => {
-    const searchTerms = term.split(' ');
-    return projects.filter(project =>
-      searchTerms.some(searchWord =>
-        searchWord.length >= 2 &&
-        project.keywords.some(keyword =>
-          keyword.toLowerCase().includes(searchWord)
-        )
-      )
-    );
-  };
+function ProjectList({ lang = 'en' }) {
+  const t = strings[lang] || strings.en;
+  const [searchTerm, setSearchTerm] = useState('');
+  const placeholder = useTypedPlaceholder(KEYWORDS);
+  const navigate = useNavigate();
 
-  const filteredProjects = searchTerm ? performSearch(projectData, searchTerm) : projectData;
+  useEffect(() => {
+    document.documentElement.lang = lang;
+  }, [lang]);
 
-  const handleBackClick = () => {
-    navigate(-1);
+  const goBack = useDebounced(() => {
+    // opened directly, there is nothing to go back to
+    if (window.history.state && window.history.state.idx > 0) {
+      navigate(-1);
+    } else {
+      navigate(lang === 'de' ? '/de' : '/');
+    }
     setTimeout(() => window.scrollTo(0, 0), 100);
-  };
+  });
 
-  const debouncedHandleBackClick = debounce(handleBackClick, 300);
+  const hasQuery = searchTerm.trim().length > 0;
+  const filtered = hasQuery ? search(projectData, searchTerm) : projectData;
 
   return (
     <div className="App fade-in">
-      <button onClick={debouncedHandleBackClick} onTouchStart={debouncedHandleBackClick} className="back-button">
-      ↩ Back
-      </button>
-      <h1>Projects</h1>
+      <button onClick={goBack} className="back-button">{t.back}</button>
+
+      <h1 className="page-title">{t.projects}</h1>
+
       <div className="search-container">
         <input
           type="text"
           className="search-bar"
           placeholder={`${placeholder}|`}
-          onChange={handleSearchChange}
+          aria-label={t.searchLabel}
+          onChange={(e) => setSearchTerm(e.target.value.toLowerCase())}
         />
       </div>
+
       <div className="projects-container">
-        {filteredProjects.length > 0 ? (
-          filteredProjects.map((project, index) => (
-            <a href={project.url} target="_blank" rel="noopener noreferrer" key={index} className="project-box-link">
-              <div className={`project-box ${!project.image ? 'no-image' : ''}`}>
-                <div className="project-content">
-                  <h3>{project.title}</h3>
-                  <p className="team">{project.team}</p>
-                  <p className="institute">{project.institute}</p>
-                  <p className='description'>{project.description}</p>
-                  <div className="keywords">{project.keywords.join(', ')}</div>
-                </div>
-                {/* EMO-GA thumbnail */}
-                {project.title === 'Emotion-Driven Editing of GaussianAvatars' && (
-                <div className="project-image-placeholder">
-                <img src={EMOGA} alt={project.title} className="project-image" />
-                </div>
-                )}
-                {/* ROS thumbnail */}
-                {project.title === "Autonomous Drones with ROS" && (
-                <div className="project-image-placeholder">
-                <img src={ROS2} alt={project.title} className="project-image" />
-                </div>
-                )}
-                {/* all other projects that carry an image field */}
-                {project.image &&
-                project.title !== "Autonomous Drones with ROS" &&
-                project.title !== "Emotion-Driven Editing of GaussianAvatars" && (
-                <div className="project-image-placeholder">
-                <img src={project.image} alt={project.title} className="project-image" />
-                </div>
-                )}
-              </div>
-            </a>
+        {filtered.length > 0 ? (
+          filtered.map((project) => (
+            <ProjectCard key={project.title} project={project} lang={lang} />
           ))
-        ) : searchTerm.length > 1 ? (
-          <div>No projects match your search.</div>
-        ) : null}
+        ) : (
+          <p>{t.noMatch}</p>
+        )}
       </div>
-      <footer className="footer">
-        © Abhinav Utkarsh 2024
-      </footer>
+
+      <Footer lang={lang} />
     </div>
   );
 }

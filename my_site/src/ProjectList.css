@@ -1,34 +1,39 @@
-h1 {
+/* was a bare h1, which leaked to every page importing this file */
+.page-title {
   font-size: 3rem;
   font-family: 'Nunito', sans-serif;
   text-align: left;
   margin: 1rem 0;
   position: relative;
   letter-spacing: 0.31rem;
-  color: white;
+  color: var(--fg);
   padding: 5rem;
 }
 
 .search-bar {
   padding: 1.4rem;
   border: 2px solid rgba(255, 255, 255, 0.1);
-  border-radius: 2.5rem;
-  outline: none;
+  border-radius: var(--radius-lg);
   width: 100%;
   max-width: 600px;
   box-sizing: border-box;
-  background-color: rgba(134, 134, 139, 0.07);
-  color: white;
+  background-color: var(--surface);
+  color: var(--fg);
   font-family: 'Nunito', sans-serif;
   margin: 0;
 }
 
+.search-bar::placeholder {
+  color: var(--muted);
+}
+
+/* border-box, or width:100% plus the padding overflows the viewport */
 .search-container {
   width: 100%;
   max-width: 1200px;
   padding: 2rem;
-  margin-top: 0rem;
   margin-bottom: 2.5rem;
+  box-sizing: border-box;
 }
 
 .projects-container {
@@ -39,70 +44,64 @@ h1 {
   position: absolute;
   top: 20px;
   left: 20px;
-  background-color: rgba(134, 134, 139, 0.07);
-  color: white;
+  background-color: var(--surface);
+  color: var(--fg);
   border: none;
-  border-radius: 1rem;
+  border-radius: var(--radius-md);
   padding: 0.7rem 0.9rem;
   font-family: 'Nunito', sans-serif;
   font-size: 1.2rem;
   cursor: pointer;
-  transition: background-color 0.45s ease;
+  transition: background-color var(--ease);
   margin-left: 1.5rem;
   margin-top: 1.5rem;
-  -webkit-touch-callout: none; 
-  -webkit-user-select: none; 
-  -moz-user-select: none; 
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
 }
 
 .back-button:hover {
-  background-color: gray;
-}
-
-.back-button:before {
-  font-size: 1.5em;
-  position: relative;
-  top: 1.5px;
+  background-color: var(--surface-hover);
 }
 
 @media (max-width: 768px) {
   .search-container {
-      padding-left: 0;
-      padding-right: 0;
-      padding-top: 2rem;
-      padding-bottom: 2rem;
+    padding-left: 0;
+    padding-right: 0;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
   }
 
-  h1 {
-      font-size: 2rem;
-      padding: 2rem 0;
-      letter-spacing: 0.25rem;
+  .page-title {
+    font-size: 2rem;
+    padding: 2rem 0;
+    letter-spacing: 0.25rem;
   }
 
   .search-bar {
-      padding: 1.4rem;
-      width: calc(100% - 2.8rem);
-      margin: 0 auto;
+    padding: 1.4rem;
+    width: calc(100% - 2.8rem);
+    margin: 0 auto;
   }
 
   .project-box {
-      margin: 1.25rem;
-      width: calc(100% - 4.5rem);
+    margin: 0 0 1.5rem;
+    width: 100%;
   }
 
   .projects-container {
-      width: auto;
-      padding: 0;
-      padding-bottom: 2rem;
+    width: auto;
+    padding: 0 0.5rem 2rem;
+    box-sizing: border-box;
   }
 
   .back-button {
-      margin-left: 0rem;
-      margin-top: 0rem;
-      padding: 0.6rem 0.8rem;
-      border-radius: 0.9rem;
-      font-size: 1rem;
+    margin-left: 0;
+    margin-top: 0;
+    padding: 0.75rem 0.9rem;
+    border-radius: 0.9rem;
+    font-size: 1rem;
   }
 }

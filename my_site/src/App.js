@@ -1,187 +1,119 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
-import AppDe from './App_de';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEnvelope } from '@fortawesome/free-solid-svg-icons';
 import { faGithub, faLinkedin } from '@fortawesome/free-brands-svg-icons';
-import profilePic from './images/profile.png';
-import myicon from './images/myicon.png';
-import ProjectList from './ProjectList';
 import { HashRouter, Routes, Route, useNavigate } from 'react-router-dom';
+import profilePic from './images/profile.png';
+import ProjectList from './ProjectList';
+import Impressum from './Impressum';
+import Greeting from './Greeting';
+import Footer from './Footer';
+import ProjectCard from './ProjectCard';
+import ProseText from './ProseText';
+import strings from './strings';
+import { EMAIL, useDebounced } from './utils';
 import ProjectsData from './Projects.json';
 import IntroData from './Intro.json';
-import ROS2 from './images/ROS_2.png'; //image imports from project list json is not working, hence importing here
-import EMOGA from './images/EMOGA.png'; //image imports from project list json is not working, hence importing here
 import FadeInPageWrapper from './FadeInPageWrapper';
 
-function debounce(func, delay) {
-  let timeoutId;
-  return function(...args) {
-    clearTimeout(timeoutId);
-    timeoutId = setTimeout(() => {
-      func.apply(this, args);
-    }, delay);
-  };
-}
+const RECENT_COUNT = 3;
+const TOGGLE_HIDE_AT = 175;
 
-function App() {
-  const [projects, setProjects] = useState([]);
-  const [language, setLanguage] = useState('EN');
+function Home({ lang }) {
+  const t = strings[lang] || strings.en;
+  const [hideToggle, setHideToggle] = useState(false);
   const navigate = useNavigate();
 
+  const projects = ProjectsData.slice(0, RECENT_COUNT);
+  const intro = lang === 'de' ? IntroData.introText_DE : IntroData.introText;
+
   useEffect(() => {
-    setProjects(ProjectsData.slice(0, 3));
-    document.title = "Abhinav";
+    document.title = 'Abhinav';
+    // picks the hyphenation dictionary and screen reader pronunciation
+    document.documentElement.lang = lang;
+  }, [lang]);
+
+  useEffect(() => {
+    const onScroll = () => setHideToggle(window.scrollY > TOGGLE_HIDE_AT);
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
-  const handleViewMoreClick = () => {
-    navigate('/projects');
+  const viewMore = useDebounced(() => {
+    navigate(lang === 'de' ? '/de/projects' : '/projects');
     window.scrollTo(0, 0);
-  };
+  });
 
-  const debouncedHandleViewMoreClick = debounce(handleViewMoreClick, 300);
-
-  // If the browser is Safari
-  // eslint-disable-next-line
-  const isSafari = () => {
-    const ua = navigator.userAgent.toLowerCase();
-    return ua.indexOf('safari') !== -1 && ua.indexOf('chrome') === -1;
-  };
-
-  // If the device is mobile
-  const isMobile = () => {
-    return /Mobi|Android/i.test(navigator.userAgent);
-  };
-
-  // Toggle between languages
-  const toggleLanguage = () => {
-    setLanguage(language === 'EN' ? 'DE' : 'EN');
-
-    if (language === 'EN') {
-      navigate('/de');
-    } else {
-      navigate('/');
-    }
-  };
-
-  const debouncedToggleLanguage = debounce(toggleLanguage, 300);
-
-  useEffect(() => {
-    window.addEventListener('scroll', function() {
-      var button = document.querySelector('.language-toggle-btn');
-      if (button) {
-        if (window.scrollY > 175) { 
-          button.classList.add('hidden');
-        } else {
-          button.classList.remove('hidden');
-        }
-      }
-    });
-  
-    return () => {
-      window.removeEventListener('scroll', () => {});
-    };
-  }, []);
-
-  const encodeEmail = () => {
-    const usernameParts = ['abhinav', 'utkarsh'];
-    const domainParts = ['tum', 'de'];
-    const username = usernameParts.join('.');
-    const domain = domainParts.join('.');
-    return `mailto:${username}@${domain}`;
-  };
-  
-  const handleEmailClick = () => {
-    window.location.href = encodeEmail();
-  };
+  const toggleLanguage = useDebounced(() => {
+    navigate(lang === 'en' ? '/de' : '/');
+  });
 
   return (
     <FadeInPageWrapper>
       <div className="App">
         <header className="header">
-          {!isMobile() && <link rel="icon" type="image/png" href={myicon} />}
-            {isSafari() && (
-              <div className="hey-wrapper2">
-            <svg width="500" height="200" xmlns="http://www.w3.org/2000/svg">
-              <text x="250" y="150" textAnchor="middle" className='hey-text'>Hey!</text>
-            </svg>
+          <div className="name-block">
+            {/* grouped so the greeting centres on the first name */}
+            <div className="name-line">
+              <Greeting />
+              <h1 className="name">ABHINAV</h1>
+            </div>
+            <h1 className="name name-last">UTKARSH</h1>
           </div>
-            )}
-          <div className="devanagari-wrapper">
-            {!isSafari() && (
-              <svg id="namasteSvg" width="500" height="200" xmlns="http://www.w3.org/2000/svg">
-                <text x="250" y="150" textAnchor="middle" className="letter">
-                  <tspan className="letter" style={{ animationDelay: '0s' }}>न</tspan>
-                  <tspan className="letter" style={{ animationDelay: '1s' }}>म</tspan>
-                  <tspan className="letter" style={{ animationDelay: '2s' }}>स्ते</tspan>
-                </text>
-              </svg>
-            )}
-          </div>
-          <h1 className="name">ABHINAV</h1>
-          <h1 className="name2"><br />UTKARSH</h1>
-          <div className="icon-container">
-            <a href="https://github.com/AbhinavUtkarsh" target="_blank" rel="noopener noreferrer">
-              <FontAwesomeIcon icon={faGithub} />
-            </a>
-            <a href="https://www.linkedin.com/in/abhinavutkarsh" target="_blank" rel="noopener noreferrer">
-              <FontAwesomeIcon icon={faLinkedin} />
-            </a>
-            {/* eslint-disable-next-line */}
-            <a href="#" onClick={handleEmailClick}>
-              <FontAwesomeIcon icon={faEnvelope} />
-            </a>
-          </div>
+
           <div className="photo-wrapper">
             <img src={profilePic} alt="Abhinav Utkarsh" className="profile-photo" />
           </div>
-          <p className="intro-text">{IntroData.introText}</p>
-          <button className="language-toggle-btn" onClick={debouncedToggleLanguage} onTouchStart={debouncedToggleLanguage}>
-            {language}
-          </button>
-        </header>
-        <section className="recent-projects">
-          <h2 className="section-title">Recent Projects</h2>
-          <div className="projects-container">
-            {projects.map((project, index) => (
-              <a href={project.url} target="_blank" rel="noopener noreferrer" key={index} className="project-box-link">
-                <div className={`project-box ${!project.image ? 'no-image' : ''}`}>
-                  <div className="project-content">
-                    <h3>{project.title}</h3>
-                    <p className="team">{project.team}</p>
-                    <p className="institute">{project.institute}</p>
-                    <p className='description'>{project.description}</p>
-                    <div className="keywords">{project.keywords.join(', ')}</div>
-                  </div>
-                {/* EMO-GA thumbnail */}
-                {project.title === 'Emotion-Driven Editing of GaussianAvatars' && (
-                <div className="project-image-placeholder">
-                <img src={EMOGA} alt={project.title} className="project-image" />
-                </div>
-                )}
-                {/* ROS thumbnail */}
-                {project.title === "Autonomous Drones with ROS" && (
-                <div className="project-image-placeholder">
-                <img src={ROS2} alt={project.title} className="project-image" />
-                </div>
-                )}
-                {/* all other projects that carry an image field */}
-                {project.image &&
-                project.title !== "Autonomous Drones with ROS" &&
-                project.title !== "Emotion-Driven Editing of GaussianAvatars" && (
-                <div className="project-image-placeholder">
-                <img src={project.image} alt={project.title} className="project-image" />
-                </div>
-                )}
-                </div>
-              </a>
+
+          <div className="icon-container">
+            <a
+              href="https://github.com/AbhinavUtkarsh"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="GitHub"
+            >
+              <FontAwesomeIcon icon={faGithub} />
+            </a>
+            <a
+              href="https://www.linkedin.com/in/abhinavutkarsh"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="LinkedIn"
+            >
+              <FontAwesomeIcon icon={faLinkedin} />
+            </a>
+            <a href={`mailto:${EMAIL}`} aria-label="Email">
+              <FontAwesomeIcon icon={faEnvelope} />
+            </a>
+          </div>
+
+          <div className="intro-text" lang={t.lang}>
+            {intro.map((paragraph, i) => (
+              <p key={i}><ProseText>{paragraph}</ProseText></p>
             ))}
           </div>
-          <button onClick={debouncedHandleViewMoreClick} onTouchStart={debouncedHandleViewMoreClick} className="view-more-btn">View More</button>
+
+          <button
+            className={`language-toggle-btn${hideToggle ? ' hidden' : ''}`}
+            onClick={toggleLanguage}
+            aria-label={lang === 'en' ? 'Auf Deutsch anzeigen' : 'Show in English'}
+          >
+            {t.toggleLabel}
+          </button>
+        </header>
+
+        <section className="recent-projects">
+          <h2 className="section-title">{t.recentProjects}</h2>
+          <div className="projects-container">
+            {projects.map((project) => (
+              <ProjectCard key={project.title} project={project} lang={lang} />
+            ))}
+          </div>
+          <button onClick={viewMore} className="view-more-btn">{t.viewMore}</button>
         </section>
-        <footer className="footer">
-          © Abhinav Utkarsh 2024
-        </footer>
+
+        <Footer lang={lang} />
       </div>
     </FadeInPageWrapper>
   );
@@ -191,9 +123,13 @@ function AppWrapper() {
   return (
     <HashRouter>
       <Routes>
-        <Route path="/" element={<App />} />
-        <Route path="/de" element={<AppDe />} />
-        <Route path="/projects" element={<ProjectList />} />
+        <Route path="/" element={<Home lang="en" />} />
+        <Route path="/de" element={<Home lang="de" />} />
+        <Route path="/projects" element={<ProjectList lang="en" />} />
+        <Route path="/de/projects" element={<ProjectList lang="de" />} />
+        <Route path="/impressum" element={<Impressum lang="en" />} />
+        <Route path="/de/impressum" element={<Impressum lang="de" />} />
+        <Route path="*" element={<Home lang="en" />} />
       </Routes>
     </HashRouter>
   );

@@ -3,6 +3,7 @@
 
 
 ###### Version History:
+- v0.5.0 : August 20, 2026,  Greeting centering fixed without CSS hacks, intro justification with hyphenation, fonts self hosted, Impressum added, EN and DE pages merged, contrast and tap targets fixed
 - v0.4.1 : June 12, 2026,  Greeting centering fixed for all screen sizes, DE language toggle route fixed, automated tests added, build now outputs directly to /docs with favicon and CNAME included
 - v0.4.0 : May 31, 2025,  Added master thesis and intro updated
 - v0.3.1 : April 16, 2024,  UI imrpovements and seminar added
@@ -19,4 +20,6 @@
 ## Details
 This repository contains the code for my personal webpage, created using ReactJS and hosted on GitHub. You can explore my portfolio and projects by visiting https://www.abhinavutkarsh.com
 ### Acknowledgements
-- Create Type Studio : Special thanks to Create Type Studio for making the beautiful Savannah Handwritten Font for free personal use. Check out their work [here](https://befonts.com/savannah-font.html)
+- Google Fonts : Noto Sans Devanagari, Roboto and Nunito, used under the SIL Open Font License.
+
+*Parts of the code in this repository are written or fixed using generative AI.*

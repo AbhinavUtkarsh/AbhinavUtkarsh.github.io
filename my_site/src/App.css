@@ -1,11 +1,63 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@300&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@300&display=swap');
+/* fonts are self-hosted, see scripts/fetch_fonts.py */
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 100;
+  font-display: swap;
+  src: url('./fonts/roboto-100.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Nunito';
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+  src: url('./fonts/nunito-300.woff2') format('woff2');
+}
+
+/* block, not swap: the greeting strokes these outlines, a fallback would
+   animate the wrong shapes and then jump */
+@font-face {
+  font-family: 'Noto Sans Devanagari';
+  font-style: normal;
+  font-weight: 300;
+  font-display: block;
+  src: url('./fonts/noto-sans-devanagari-300.woff2') format('woff2');
+}
+
+:root {
+  --bg: #101010;
+  --fg: #ffffff;
+  --muted: #86868b;
+  --surface: rgba(134, 134, 139, 0.07);
+  --surface-hover: gray;
+  --meta: #909096;
+  --keywords: #808086;
+  --ink: rgba(134, 134, 139, 0.45);
+  --radius-lg: 2.5rem;
+  --radius-md: 1rem;
+  --radius-sm: 0.75rem;
+  --ease: 0.45s ease;
+}
+
+html,
+body {
+  background-color: var(--bg);
+}
+
+html::-webkit-scrollbar {
+  display: none;
+}
+
+body {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
 
 .App {
   text-align: center;
-  color: white;
-  background-color: #101010;
+  color: var(--fg);
+  background-color: var(--bg);
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -18,65 +70,14 @@
   padding-bottom: 1rem;
 }
 
-.devanagari-text {
-  font-size: 6rem;
-  font-family: 'Noto Sans Devanagari', sans-serif;
-  color: rgba(134, 134, 139, 0.40);
-  letter-spacing: 0.07rem;
-}
-
-/*
-  Greeting (नमस्ते / Hey! / Servus!) positioning.
-  The SVG text is centered inside its 500px box (text-anchor="middle" at x=250),
-  so positioning the box is all that's needed:
-  - Desktop: shift the box left so the text sits above the first name.
-  - Mobile (see media query below): left 50% + translateX(-50%) = always centered.
-*/
-.devnagri-static-wrapper,
-.devanagari-wrapper,
-.hey-wrapper,
-.hey-wrapper2 {
-  position: absolute;
-  top: 0;
-  left: -80px;
-  transform: translateY(-7%);
-  pointer-events: none;
-}
-
-@keyframes drawText {
-  to {
-    stroke-dashoffset: 0;
-  }
-}
-
-svg text {
-  font-family: 'Noto Sans Devanagari', italic;
-  font-size: 6rem;
-  fill: none;
-  stroke: rgba(134, 134, 139, 0.45);
-  stroke-width: 2;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-  letter-spacing: 0.2rem;
-}
-
-svg .letter {
-  stroke-dasharray: 700;
-  stroke-dashoffset: 700;
-  animation: drawText 12s forwards;
-}
-
-.letter {
-  -webkit-font-smoothing: none;
-  -moz-osx-font-smoothing: grayscale;
-}
+/* header */
 
 .header {
   display: grid;
   grid-template-columns: 3fr 2fr;
   grid-template-areas:
     'name photo'
-    'icons2 icons'
+    '.    icons'
     'intro intro';
   align-items: start;
   gap: 20px;
@@ -87,61 +88,105 @@ svg .letter {
   position: relative;
 }
 
-.name {
+.name-block {
+  --name-ls: 0.75rem;
   grid-area: name;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: fit-content;
+  margin-left: 1rem;
+}
+
+/* fit-content, so it is exactly as wide as ABHINAV and the greeting can be
+   sized and centred off it */
+.name-line {
+  display: flex;
+  flex-direction: column;
+  width: fit-content;
+}
+
+.greeting {
+  width: 54%;
+  align-self: center;
+  margin-bottom: 6%;
+  /* trailing letter-space makes the name's box wider than its ink, which
+     shifts the centre right by half a space */
+  margin-right: var(--name-ls);
+  pointer-events: none;
+}
+
+.greeting-svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  overflow: visible;
+}
+
+.greeting-svg text {
+  font-family: 'Noto Sans Devanagari', sans-serif;
+  font-size: 6rem;
+  fill: none;
+  stroke: var(--ink);
+  stroke-width: 2;
+  vector-effect: non-scaling-stroke; /* stays a 2px hairline at any size */
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  letter-spacing: 0.2rem;
+}
+
+@keyframes drawText {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+.greeting-svg .letter {
+  stroke-dasharray: 700;
+  stroke-dashoffset: 700;
+  animation: drawText 12s forwards;
+}
+
+.name {
   font-size: 5rem;
-  line-height: 1.2;
+  line-height: 1.15;
   margin: 0;
   text-align: left;
   font-family: 'Roboto', sans-serif;
   font-weight: 100;
   letter-spacing: 0.75rem;
-  padding-left: 1rem;
 }
 
-.name2 {
-  grid-area: name;
-  font-size: 5rem;
-  line-height: 1.2;
-  margin: 0;
-  text-align: left;
-  font-family: 'Roboto', sans-serif;
-  font-weight: 100;
-  letter-spacing: 0.5rem;
-  padding-left: 1rem;
-  padding-bottom: 1.5rem;
-  padding-top: 6.0rem;
+/* wider glyphs than ABHINAV, so less tracking to keep both names the same
+   width and the right edge straight */
+.name-last {
+  letter-spacing: 0.4rem;
 }
 
 .icon-container {
   display: flex;
   justify-content: center;
-  gap: 5rem;
+  gap: 4rem;
   margin-top: 1rem;
   font-size: 1.7rem;
   grid-area: icons;
   padding-bottom: 1rem;
 }
 
+/* the glyphs are ~22px; min-width/height lifts the tap target to 44px */
 .icon-container a {
-  color: white;
+  color: var(--fg);
   text-decoration: none;
   transition: color 0.4s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 2.75rem;
+  min-height: 2.75rem;
 }
 
 .icon-container a:hover {
-  color: gray;
-}
-
-.profile-photo {
-  grid-area: photo;
-  width: 15rem;
-  height: 15rem;
-  border-radius: 50%;
-  object-fit: cover;
-  border: none;
-  padding: 10px;
-  justify-self: center;
+  color: var(--surface-hover);
 }
 
 .photo-wrapper {
@@ -149,22 +194,53 @@ svg .letter {
   width: 15rem;
   height: 15rem;
   border-radius: 100%;
-  background-color: rgba(134, 134, 139, 0.07);
+  background-color: var(--surface);
   display: flex;
   justify-content: center;
   align-items: center;
   justify-self: center;
 }
 
+.profile-photo {
+  width: 15rem;
+  height: 15rem;
+  border-radius: 50%;
+  object-fit: cover;
+  border: none;
+  padding: 10px;
+}
+
+/* hyphens:auto does nothing without a lang attribute, and letter-spacing here
+   would starve each line of words and reopen the gaps */
 .intro-text {
   grid-area: intro;
   text-align: justify;
-  font-size: 1.7rem;
+  hyphens: auto;
+  -webkit-hyphens: auto;
+  -ms-hyphens: auto;
+  font-size: 1.35rem;
+  line-height: 1.6;
   margin: 0;
   padding: 1rem;
-  font-family: 'Nunito';
-  letter-spacing: 0.145rem;
+  font-family: 'Nunito', sans-serif;
 }
+
+/* German rules split names like GaussianAvatars in the wrong place */
+.no-hyphen {
+  hyphens: none;
+  -webkit-hyphens: none;
+  -ms-hyphens: none;
+}
+
+.intro-text p {
+  margin: 0 0 1em;
+}
+
+.intro-text p:last-child {
+  margin-bottom: 0;
+}
+
+/* projects */
 
 .section-title {
   font-size: 2.5rem;
@@ -190,14 +266,24 @@ svg .letter {
   margin: 0 auto;
 }
 
-h3 {
+.project-content h3 {
   font-size: 2rem;
   font-family: 'Nunito', sans-serif;
   text-align: left;
   margin: 1rem 0;
   position: relative;
   letter-spacing: 0.145rem;
-  color: white;
+  color: var(--fg);
+}
+
+/* percentage widths plus padding, so these need border-box or the card
+   overflows its parent */
+.project-box,
+.project-content,
+.project-image-placeholder,
+.projects-container,
+.recent-projects {
+  box-sizing: border-box;
 }
 
 .project-box {
@@ -205,23 +291,14 @@ h3 {
   gap: 1.5rem;
   align-items: center;
   justify-content: space-between;
-  background-color: rgba(134, 134, 139, 0.07);
-  border-radius: 2.5rem;
+  background-color: var(--surface);
+  border-radius: var(--radius-lg);
   overflow: hidden;
-  margin-bottom: 3rem;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   width: 90%;
   max-width: 1000px;
-  margin: 0 auto;
+  margin: 0 auto 3rem;
   padding-right: 2rem;
-}
-
-.project-box:not(:last-child) {
-  margin-bottom: 3rem;
-}
-
-.project-box-link:not(:last-child) {
-  margin-bottom: 3rem;
 }
 
 .project-box-link {
@@ -242,7 +319,7 @@ h3 {
 
 .team {
   font-size: 1rem;
-  color: #666;
+  color: var(--meta);
   text-align: left;
   font-style: italic;
   font-weight: 900;
@@ -250,154 +327,127 @@ h3 {
 
 .institute {
   font-size: 1rem;
-  color: #666;
+  color: var(--meta);
   text-align: left;
   font-weight: 900;
 }
 
 .description {
   font-size: 1rem;
-  /*font-weight: 500; */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   margin-top: 0.3rem;
-  text-align: left;
-  color: white;
-  line-height: 1.3;
+  color: var(--fg);
+  line-height: 1.45;
   text-align: justify;
+  hyphens: auto;
+  -webkit-hyphens: auto;
 }
 
 .keywords {
   font-size: 0.9rem;
   margin-top: 10px;
-  color: #444;
+  color: var(--keywords);
   text-align: right;
   font-weight: 700;
 }
 
-
 .project-image-placeholder {
-  width: 30%;               
-  margin-left: auto;         
-  border-radius: 2.5rem;
+  width: 30%;
+  margin-left: auto;
+  border-radius: var(--radius-lg);
   overflow: hidden;
-  display: flex;             
+  display: flex;
   align-items: center;
   justify-content: center;
 }
 
 .project-image-placeholder img {
   display: block;
-  width: 100%;               
-  height: auto;              
-  object-fit: contain;       
+  width: 100%;
+  height: auto;
+  object-fit: contain;
 }
 
 .project-box.no-image .project-content {
   width: 100%;
 }
 
-.project-box.no-image .project-image-placeholder {
-  display: none;
-}
-
 .view-more-btn {
-  transition: background-color 0.45s ease;
-  color: white;
+  transition: background-color var(--ease);
+  color: var(--fg);
   font-family: 'Nunito', sans-serif;
-  border-radius: 1rem;
-  background-color: rgba(134, 134, 139, 0.07);
+  border-radius: var(--radius-md);
+  background-color: var(--surface);
   padding: 0.7rem 0.9rem;
   border: none;
   font-size: 1.2rem;
-  margin-top: 3rem;
-  margin-bottom: 3rem;
+  margin: 3rem 0;
+  cursor: pointer;
   -webkit-touch-callout: none;
-  -webkit-user-select: none; 
+  -webkit-user-select: none;
   -moz-user-select: none;
-  -ms-user-select: none; 
+  -ms-user-select: none;
   user-select: none;
 }
 
 .view-more-btn:hover {
-  background-color: gray;
+  background-color: var(--surface-hover);
 }
+
+/* footer, toggle, legal */
 
 .footer {
-  position: fixed;
-  right: 0.5rem;
-  bottom: 0.5rem;
-  color: grey;
+  width: 100%;
+  margin-top: auto;
+  padding: 3rem 1rem 0.5rem;
+  color: var(--muted);
   font-family: 'Nunito', sans-serif;
+  font-size: 0.9rem;
+  display: flex;
+  gap: 1rem;
+  justify-content: flex-end;
+  align-items: baseline;
+  box-sizing: border-box;
 }
 
-html,
-body {
-  background-color: #101010;
+.footer-link {
+  color: var(--muted);
+  text-decoration: none;
+  transition: color var(--ease);
+  display: inline-block;
+  padding: 0.75rem 0.35rem;
 }
 
-html::-webkit-scrollbar {
-  display: none;
-}
-
-body {
-  -ms-overflow-style: none; 
-  scrollbar-width: none;
-}
-
-@font-face {
-  font-family: savannahregular;
-  src: url('./fonts/savannahregular.ttf') format('truetype');
-}
-
-.hey-text {
-  font-size: 5.5rem;
-  font-family: 'savannahregular', sans-serif;
-  fill: rgba(134, 134, 139, 0.40);
-  border: none;
-  opacity: 0;
-  animation: write 5s forwards;
-}
-
-@keyframes write {
-  0% {
-    opacity: 0;
-    stroke-dashoffset: 100%;
-  }
-  50% {
-    opacity: 1;
-    stroke-dashoffset: 0%;
-  }
-  100% {
-    opacity: 1;
-    stroke-dashoffset: 0%;
-  }
+.footer-link:hover {
+  color: var(--fg);
+  text-decoration: underline;
 }
 
 .language-toggle-btn {
   position: fixed;
   top: 20px;
-  right: 20px; 
-  background-color: rgba(134, 134, 139, 0.07); 
-  color: white; 
-  border: none; 
-  border-radius: 0.75rem;
+  right: 20px;
+  background-color: var(--surface);
+  color: var(--fg);
+  border: none;
+  border-radius: var(--radius-sm);
   padding: 0.7rem 0.9rem;
   cursor: pointer;
-  z-index: 0; 
-  transition: background-color 0.45s ease;
+  z-index: 1;
+  transition: background-color var(--ease), opacity var(--ease);
   letter-spacing: 0.1rem;
   font-family: 'Nunito', sans-serif;
   font-size: 1rem;
-  -webkit-touch-callout: none; 
+  -webkit-touch-callout: none;
   -webkit-user-select: none;
-  -moz-user-select: none; 
+  -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
 }
 
 .language-toggle-btn:hover {
-  background-color: gray;
+  background-color: var(--surface-hover);
 }
 
 .language-toggle-btn.hidden {
@@ -405,7 +455,62 @@ body {
   pointer-events: none;
 }
 
-/* Mobile View */
+/* keyboard-only, pointer users see nothing */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible {
+  outline: 2px solid var(--muted);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+.legal {
+  width: 90%;
+  max-width: 720px;
+  margin: 5rem auto 2rem;
+  text-align: left;
+  font-family: 'Nunito', sans-serif;
+  line-height: 1.6;
+}
+
+.legal-title {
+  font-size: 2.5rem;
+  font-weight: 300;
+  letter-spacing: 0.145rem;
+  margin: 0 0 2rem;
+  padding: 0;
+}
+
+.legal-heading {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--muted);
+  margin: 2rem 0 0.4rem;
+  letter-spacing: 0.05rem;
+}
+
+.legal p {
+  margin: 0;
+}
+
+.legal-pending {
+  color: var(--muted);
+}
+
+.legal-link {
+  color: var(--fg);
+  text-decoration: none;
+  border-bottom: 1px solid var(--muted);
+  display: inline-block;
+  padding: 0.45rem 0;
+}
+
+.legal-link:hover {
+  color: var(--muted);
+}
+
+/* mobile */
+
 @media (max-width: 768px) {
   .header {
     grid-template-areas:
@@ -421,16 +526,37 @@ body {
     max-width: none;
   }
 
+  .name-block {
+    --name-ls: 0.5rem;
+    align-items: center;
+    margin: 3rem auto 0;
+  }
+
+  .name {
+    font-size: 2.8rem;
+    text-align: center;
+    letter-spacing: 0.5rem;
+    line-height: 1.25;
+  }
+
+  .name-last {
+    letter-spacing: 0.3rem;
+  }
+
   .recent-projects {
     width: auto;
     margin: 0 10px;
     max-width: none;
   }
 
+  /* card and content padding used to stack and eat ~35% of the width */
   .project-box {
     flex-direction: column;
     align-items: center;
-    padding: 1rem;
+    padding: 0.5rem;
+    width: 100%;
+    margin: 0 0 1.5rem;
+    border-radius: 1.5rem;
   }
 
   .project-content,
@@ -438,63 +564,40 @@ body {
     width: 100%;
   }
 
+  .project-content {
+    padding: 0.75rem;
+  }
+
+  .project-content h3 {
+    font-size: 1.4rem;
+    margin: 0.25rem 0 0.5rem;
+    letter-spacing: 0.05rem;
+  }
+
   .project-image-placeholder {
-    width: 100%;
-    border-radius: 2.5rem;
+    border-radius: 1.25rem;
     overflow: hidden;
-    margin: 1rem 0;
-  }
-
-  .project-image-placeholder img {
-    display: block;
-    width: 100%;
-    height: auto;
-    object-fit: contain;
-  }
-
-  .name,
-  .name2 {
-    font-size: 2.8rem;
-    text-align: center;
-    letter-spacing: normal;
-    margin-top: 4rem;
-    letter-spacing: 0.75rem;
-    line-height: 2.5rem;
-  }
-
-  .name2 {
-    padding-top: 3.5rem;
-    padding-bottom: 1.5rem;
+    margin: 0.75rem 0 0.25rem;
   }
 
   .icon-container {
     padding-bottom: 1rem;
-    padding-bottom: 1rem;
-    gap: 4.5rem;
+    gap: 3.25rem;
     font-size: 1.45rem;
   }
 
+  .photo-wrapper,
   .profile-photo {
     width: 12rem;
     height: 12rem;
-    margin: 0 auto;
   }
-  
+
   .photo-wrapper {
-    width: 12rem;
-    height: 12rem;
-    border-radius: 50%;
-    background-color: rgba(134, 134, 139, 0.07);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    justify-self: center;
     padding: 0;
   }
 
   .intro-text {
     font-size: 1rem;
-    text-align: justify;
     padding: 10px;
   }
 
@@ -502,21 +605,35 @@ body {
     padding: 1rem;
   }
 
-  .devanagari-text {
-    font-size: 4rem;
-  }
-
-  .devanagari-wrapper,
-  .devnagri-static-wrapper,
-  .hey-wrapper,
-  .hey-wrapper2 {
-    top: 5%;
-    left: 50%;
-    transform: translate(-50%, -55%);
-  }
-
   .footer {
-    position: relative;
-    padding-top: 3rem;
+    justify-content: center;
+    padding-top: 2rem;
+  }
+
+  .legal {
+    margin-top: 4rem;
+  }
+}
+
+/* too few words per line for justification to spread evenly */
+@media (max-width: 420px) {
+  .intro-text,
+  .description {
+    text-align: left;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .greeting-svg .letter {
+    animation: none;
+    stroke-dashoffset: 0;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
   }
 }

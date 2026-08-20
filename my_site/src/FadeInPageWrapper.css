@@ -10,3 +10,9 @@
 .fade-in {
   animation: fadeIn 1s ease-in;
 }
+
+@media (prefers-reduced-motion: reduce) {
+  .fade-in {
+    animation: none;
+  }
+}

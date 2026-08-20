@@ -53,6 +53,13 @@ test('greeting is grouped with the first name so it centres on it', () => {
   expect(line.querySelector('.name').textContent).toBe('ABHINAV');
 });
 
+test('greeting is drawn as paths, not shaped text', () => {
+  const { container } = render(<AppWrapper />);
+  // Safari mangles the स्ते conjunct in SVG <text>
+  expect(container.querySelectorAll('.greeting-svg path').length).toBeGreaterThan(0);
+  expect(container.querySelectorAll('.greeting-svg text')).toHaveLength(0);
+});
+
 test('proper nouns are shielded from hyphenation', () => {
   const { container } = render(<AppWrapper />);
   const shielded = [...container.querySelectorAll('.intro-text .no-hyphen')]

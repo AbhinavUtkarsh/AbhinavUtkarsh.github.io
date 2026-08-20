@@ -15,16 +15,6 @@
   src: url('./fonts/nunito-300.woff2') format('woff2');
 }
 
-/* block, not swap: the greeting strokes these outlines, a fallback would
-   animate the wrong shapes and then jump */
-@font-face {
-  font-family: 'Noto Sans Devanagari';
-  font-style: normal;
-  font-weight: 300;
-  font-display: block;
-  src: url('./fonts/noto-sans-devanagari-300.woff2') format('woff2');
-}
-
 :root {
   --bg: #101010;
   --fg: #ffffff;
@@ -107,7 +97,7 @@ body {
 }
 
 .greeting {
-  width: 54%;
+  width: 53%;
   align-self: center;
   margin-bottom: 6%;
   /* trailing letter-space makes the name's box wider than its ink, which
@@ -123,16 +113,13 @@ body {
   overflow: visible;
 }
 
-.greeting-svg text {
-  font-family: 'Noto Sans Devanagari', sans-serif;
-  font-size: 6rem;
+.greeting-svg path {
   fill: none;
   stroke: var(--ink);
   stroke-width: 2;
   vector-effect: non-scaling-stroke; /* stays a 2px hairline at any size */
   stroke-linecap: round;
   stroke-linejoin: round;
-  letter-spacing: 0.2rem;
 }
 
 @keyframes drawText {
@@ -141,9 +128,8 @@ body {
   }
 }
 
+/* dash length is set per path, from the real outline length */
 .greeting-svg .letter {
-  stroke-dasharray: 700;
-  stroke-dashoffset: 700;
   animation: drawText 12s forwards;
 }
 
@@ -624,9 +610,10 @@ input:focus-visible {
 }
 
 @media (prefers-reduced-motion: reduce) {
+  /* !important: the dash offset is an inline style, set per path */
   .greeting-svg .letter {
     animation: none;
-    stroke-dashoffset: 0;
+    stroke-dashoffset: 0 !important;
   }
 
   *,

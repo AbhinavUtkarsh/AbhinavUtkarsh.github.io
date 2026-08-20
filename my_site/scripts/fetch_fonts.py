@@ -19,8 +19,6 @@ UA = {"User-Agent": ("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.
 WANTED = [
     ("Roboto", "100", "roboto-100", "U+0000-00FF"),
     ("Nunito", "300", "nunito-300", "U+0000-00FF"),
-    # the greeting needs the Devanagari subset, not latin
-    ("Noto Sans Devanagari", "300", "noto-sans-devanagari-300", "U+0900-097F"),
 ]
 
 

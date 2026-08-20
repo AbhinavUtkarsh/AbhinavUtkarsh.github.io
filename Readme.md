@@ -3,6 +3,7 @@
 
 
 ###### Version History:
+- v0.5.1 : August 20, 2026,  Namaste redrawn as SVG paths, fixes broken Devanagari shaping on iOS Safari and its size on mobile
 - v0.5.0 : August 20, 2026,  Greeting centering fixed without CSS hacks, intro justification with hyphenation, fonts self hosted, Impressum added, EN and DE pages merged, contrast and tap targets fixed
 - v0.4.1 : June 12, 2026,  Greeting centering fixed for all screen sizes, DE language toggle route fixed, automated tests added, build now outputs directly to /docs with favicon and CNAME included
 - v0.4.0 : May 31, 2025,  Added master thesis and intro updated

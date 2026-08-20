@@ -21,3 +21,6 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+# font downloads used by scripts/
+scripts/.fontcache/

@@ -131,7 +131,7 @@ body {
 /* dash length is set per path, from the real outline length.
    linear, so the pen keeps an even speed instead of rushing the start */
 .greeting-svg .letter {
-  animation: drawText 15s linear forwards;
+  animation: drawText 60s linear forwards;
 }
 
 .name {
@@ -486,13 +486,13 @@ body {
   transition-duration: 90ms;
 }
 
-/* keyboard-only, pointer users see nothing */
+/* keyboard-only, pointer users see nothing. No border-radius here, it would
+   square off the search pill on focus. */
 a:focus-visible,
 button:focus-visible,
 input:focus-visible {
   outline: 2px solid var(--muted);
   outline-offset: 3px;
-  border-radius: 4px;
 }
 
 .legal {

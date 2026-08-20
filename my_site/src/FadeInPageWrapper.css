@@ -7,9 +7,8 @@
   }
 }
 
-/* slow enough to read as a transition, short enough not to feel sluggish */
 .fade-in {
-  animation: fadeIn 420ms ease-out both;
+  animation: fadeIn 1700ms ease-out both;
 }
 
 @media (prefers-reduced-motion: reduce) {

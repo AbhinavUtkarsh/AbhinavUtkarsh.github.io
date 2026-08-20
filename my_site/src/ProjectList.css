@@ -21,6 +21,11 @@
   color: var(--fg);
   font-family: 'Nunito', sans-serif;
   margin: 0;
+  /* iOS zooms the page in when a focused field is under 16px, and never zooms
+     back out. appearance:none stops it drawing its own square field over the pill */
+  font-size: 16px;
+  -webkit-appearance: none;
+  appearance: none;
 }
 
 .search-bar::placeholder {

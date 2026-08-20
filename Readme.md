@@ -3,11 +3,7 @@
 
 
 ###### Version History:
-- v0.5.4 : August 20, 2026,  Slower page transition between routes
-- v0.5.3 : August 20, 2026,  Namaste 1.5x on mobile, soft fade between pages, material style tap feedback, buttons act on first tap
-- v0.5.2 : August 20, 2026,  Single tap activates buttons on touch, image sizes set to stop layout shift
-- v0.5.1 : August 20, 2026,  Namaste redrawn as SVG paths, fixes broken Devanagari shaping on iOS Safari and its size on mobile
-- v0.5.0 : August 20, 2026,  Greeting centering fixed without CSS hacks, intro justification with hyphenation, fonts self hosted, Impressum added, EN and DE pages merged, contrast and tap targets fixed
+- v0.5.0 : August 20, 2026,  Greeting centering fixed without CSS hacks, namaste redrawn as SVG paths so it renders on iOS Safari, bigger and slower draw on mobile, intro justification with hyphenation, fonts self hosted, Impressum added, EN and DE pages merged, contrast and tap targets fixed, single tap with material style feedback, soft page transitions
 - v0.4.1 : June 12, 2026,  Greeting centering fixed for all screen sizes, DE language toggle route fixed, automated tests added, build now outputs directly to /docs with favicon and CNAME included
 - v0.4.0 : May 31, 2025,  Added master thesis and intro updated
 - v0.3.1 : April 16, 2024,  UI imrpovements and seminar added

@@ -3,9 +3,7 @@
 
 
 ###### Version History:
-- v0.6.1 : August 20, 2026,  Round back button on every subpage, no rule under the email address, footer centred on narrow screens
-- v0.6.0 : August 20, 2026,  Privacy page added in EN and DE, legal pages only show the back button when there is somewhere to return to, back restores the scroll position, faster namaste draw
-- v0.5.0 : August 20, 2026,  Greeting centering fixed without CSS hacks, namaste redrawn as SVG paths so it renders on iOS Safari, bigger and slower draw on mobile, intro justification with hyphenation, fonts self hosted, Impressum added, EN and DE pages merged, contrast and tap targets fixed, single tap with material style feedback, soft page transitions
+- v0.6.0 : August 21, 2026,  Greeting centering fixed without CSS hacks, namaste redrawn as SVG paths so it renders on iOS Safari, bigger and slower draw on mobile, intro justification with hyphenation, fonts self hosted, Impressum and Privacy added in EN and DE, round back button on every subpage shown only when there is somewhere to return to and returning keeps the scroll position, EN and DE pages merged, contrast and tap targets fixed, single tap with material style feedback, soft page transitions, search field stays a pill and no longer zooms on iOS, footer centred on narrow screens
 - v0.4.1 : June 12, 2026,  Greeting centering fixed for all screen sizes, DE language toggle route fixed, automated tests added, build now outputs directly to /docs with favicon and CNAME included
 - v0.4.0 : May 31, 2025,  Added master thesis and intro updated
 - v0.3.1 : April 16, 2024,  UI imrpovements and seminar added

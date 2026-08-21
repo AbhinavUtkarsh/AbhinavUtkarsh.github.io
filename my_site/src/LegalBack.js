@@ -52,7 +52,7 @@ function LegalBack({ lang = 'en', label = 'Back' }) {
   };
 
   return (
-    <a className="legal-back" href={href} aria-label={label} onClick={onClick}>
+    <a className="back-button" href={href} aria-label={label} onClick={onClick}>
       <FontAwesomeIcon icon={faArrowLeft} />
     </a>
   );

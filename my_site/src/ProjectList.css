@@ -45,34 +45,6 @@
   padding-bottom: 3rem;
 }
 
-.back-button {
-  position: absolute;
-  top: 20px;
-  left: 20px;
-  background-color: var(--surface);
-  color: var(--fg);
-  border: none;
-  border-radius: var(--radius-md);
-  padding: 0.7rem 0.9rem;
-  font-family: 'Nunito', sans-serif;
-  font-size: 1.2rem;
-  cursor: pointer;
-  transition: background-color 240ms ease;
-  margin-left: 1.5rem;
-  margin-top: 1.5rem;
-  -webkit-touch-callout: none;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-}
-
-@media (hover: hover) {
-  .back-button:hover {
-    background-color: var(--surface-hover);
-  }
-}
-
 @media (max-width: 768px) {
   .search-container {
     padding-left: 0;
@@ -104,11 +76,4 @@
     box-sizing: border-box;
   }
 
-  .back-button {
-    margin-left: 0;
-    margin-top: 0;
-    padding: 0.75rem 0.9rem;
-    border-radius: 0.9rem;
-    font-size: 1rem;
-  }
 }

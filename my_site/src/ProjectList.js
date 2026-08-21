@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import './App.css';
 import './ProjectList.css';
 import { useNavigate } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 import projectData from './Projects.json';
 import ProjectCard from './ProjectCard';
 import Footer from './Footer';
@@ -88,7 +90,9 @@ function ProjectList({ lang = 'en' }) {
 
   return (
     <div className="App">
-      <button {...goBack} className="back-button">{t.back}</button>
+      <button {...goBack} className="back-button" aria-label={t.back}>
+        <FontAwesomeIcon icon={faArrowLeft} />
+      </button>
 
       <h1 className="page-title">{t.projects}</h1>
 

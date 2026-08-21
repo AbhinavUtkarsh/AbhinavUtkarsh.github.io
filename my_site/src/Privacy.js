@@ -131,7 +131,7 @@ function Privacy({ lang = 'en' }) {
           Abhinav Utkarsh
           <br />
           {t.controllerText}{' '}
-          <Link className="legal-link" to={lang === 'de' ? '/de/impressum' : '/impressum'}>
+          <Link className="legal-link legal-link-underlined" to={lang === 'de' ? '/de/impressum' : '/impressum'}>
             {t.impressum}
           </Link>
           .

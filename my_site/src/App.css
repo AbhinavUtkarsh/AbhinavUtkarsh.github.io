@@ -402,6 +402,7 @@ body {
   font-family: 'Nunito', sans-serif;
   font-size: 0.9rem;
   display: flex;
+  flex-wrap: wrap;
   gap: 1rem;
   justify-content: flex-end;
   align-items: baseline;
@@ -488,7 +489,7 @@ body {
 
 /* Same control as the project page at /Emotion-Driven-Editing-of-Gaussian-Avatars/
    (static/css/access.css), so the two sites feel like one. */
-.legal-back {
+.back-button {
   position: fixed;
   top: 1rem;
   left: 1rem;
@@ -511,13 +512,13 @@ body {
 }
 
 @media (hover: hover) {
-  .legal-back:hover {
+  .back-button:hover {
     background-color: rgba(255, 255, 255, 0.25);
     color: #fff;
   }
 }
 
-.legal-back:active {
+.back-button:active {
   background-color: rgba(255, 255, 255, 0.25);
   transform: scale(0.95);
 }
@@ -571,9 +572,12 @@ input:focus-visible {
 .legal-link {
   color: var(--fg);
   text-decoration: none;
-  border-bottom: 1px solid var(--muted);
   display: inline-block;
   padding: 0.45rem 0;
+}
+
+.legal-link-underlined {
+  border-bottom: 1px solid var(--muted);
 }
 
 @media (hover: hover) {
@@ -685,14 +689,23 @@ input:focus-visible {
 
   .footer {
     justify-content: center;
+    align-items: center;
+    gap: 0.25rem 1.25rem;
+    text-align: center;
     padding-top: 2rem;
+  }
+
+  /* copyright on its own line, the two links centred under it, rather than
+     the row splitting wherever it happens to run out of width */
+  .footer > span {
+    flex-basis: 100%;
   }
 
   .legal {
     margin-top: 4rem;
   }
 
-  .legal-back {
+  .back-button {
     width: 3rem;
     height: 3rem;
     font-size: 1.15rem;

@@ -81,7 +81,6 @@ function ProjectList({ lang = 'en' }) {
     } else {
       navigate(lang === 'de' ? '/de' : '/');
     }
-    setTimeout(() => window.scrollTo(0, 0), 100);
   });
 
   const hasQuery = searchTerm.trim().length > 0;

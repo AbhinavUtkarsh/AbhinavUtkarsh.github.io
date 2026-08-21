@@ -12,6 +12,9 @@ function Footer({ lang = 'en' }) {
   return (
     <footer className="footer">
       <span>© {span} Abhinav Utkarsh</span>
+      <Link className="footer-link" to={lang === 'de' ? '/de/privacy' : '/privacy'}>
+        {t.privacy}
+      </Link>
       <Link className="footer-link" to={lang === 'de' ? '/de/impressum' : '/impressum'}>
         {t.impressum}
       </Link>

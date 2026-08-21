@@ -10,6 +10,7 @@ const strings = {
     back: '↩ Back',
     noMatch: 'No projects match your search.',
     impressum: 'Impressum',
+    privacy: 'Privacy',
   },
   de: {
     lang: 'de',
@@ -21,6 +22,7 @@ const strings = {
     back: '↩ Zurück',
     noMatch: 'Keine Projekte gefunden.',
     impressum: 'Impressum',
+    privacy: 'Datenschutz',
   },
 };
 

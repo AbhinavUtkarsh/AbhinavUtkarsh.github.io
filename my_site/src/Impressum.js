@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
 import './App.css';
 import './ProjectList.css';
-import { EMAIL, useTapHandlers } from './utils';
+import { EMAIL } from './utils';
 import Footer from './Footer';
+import LegalBack from './LegalBack';
 
 // Fill these in and the page picks them up. Empty renders as a blank line.
 const DETAILS = {
@@ -41,7 +41,7 @@ const TEXT = {
     copyrightText:
       'Die durch den Seitenbetreiber erstellten Inhalte und Werke auf diesen Seiten unterliegen '
       + 'dem deutschen Urheberrecht. Beiträge Dritter sind als solche gekennzeichnet.',
-    back: '↩ Zurück',
+    back: 'Zurück',
   },
   en: {
     title: 'Impressum',
@@ -64,7 +64,7 @@ const TEXT = {
     copyrightText:
       'Content and works created by the site operator on these pages are subject to German '
       + 'copyright law. Contributions by third parties are marked as such.',
-    back: '↩ Back',
+    back: 'Back',
   },
 };
 
@@ -88,23 +88,17 @@ function Address() {
 
 function Impressum({ lang = 'en' }) {
   const t = TEXT[lang] || TEXT.en;
-  const navigate = useNavigate();
 
   useEffect(() => {
     document.title = 'Impressum | Abhinav Utkarsh';
     document.documentElement.lang = lang;
   }, [lang]);
 
-  const goBack = useTapHandlers(() => {
-    navigate(lang === 'de' ? '/de' : '/');
-    window.scrollTo(0, 0);
-  });
-
   return (
     <div className="App">
-      <button {...goBack} className="back-button">{t.back}</button>
+      <LegalBack lang={lang} label={t.back} />
 
-      <section className="legal">
+      <section className="legal" lang={lang}>
         <h1 className="legal-title">{t.title}</h1>
 
         <h2 className="legal-heading">{t.provider}</h2>

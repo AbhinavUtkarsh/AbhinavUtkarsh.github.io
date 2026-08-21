@@ -7,6 +7,7 @@ import { HashRouter, Routes, Route, useNavigate } from 'react-router-dom';
 import profilePic from './images/profile.png';
 import ProjectList from './ProjectList';
 import Impressum from './Impressum';
+import Privacy from './Privacy';
 import Greeting from './Greeting';
 import Footer from './Footer';
 import ProjectCard from './ProjectCard';
@@ -16,6 +17,7 @@ import { EMAIL, useTapHandlers } from './utils';
 import ProjectsData from './Projects.json';
 import IntroData from './Intro.json';
 import FadeInPageWrapper from './FadeInPageWrapper';
+import ScrollMemory from './scroll';
 
 const RECENT_COUNT = 3;
 const TOGGLE_HIDE_AT = 175;
@@ -42,7 +44,6 @@ function Home({ lang }) {
 
   const viewMore = useTapHandlers(() => {
     navigate(lang === 'de' ? '/de/projects' : '/projects');
-    window.scrollTo(0, 0);
   });
 
   const toggleLanguage = useTapHandlers(() => {
@@ -129,6 +130,7 @@ const page = (element) => <FadeInPageWrapper>{element}</FadeInPageWrapper>;
 function AppWrapper() {
   return (
     <HashRouter>
+      <ScrollMemory />
       <Routes>
         <Route path="/" element={page(<Home lang="en" />)} />
         <Route path="/de" element={page(<Home lang="de" />)} />
@@ -136,6 +138,8 @@ function AppWrapper() {
         <Route path="/de/projects" element={page(<ProjectList lang="de" />)} />
         <Route path="/impressum" element={page(<Impressum lang="en" />)} />
         <Route path="/de/impressum" element={page(<Impressum lang="de" />)} />
+        <Route path="/privacy" element={page(<Privacy lang="en" />)} />
+        <Route path="/de/privacy" element={page(<Privacy lang="de" />)} />
         <Route path="*" element={page(<Home lang="en" />)} />
       </Routes>
     </HashRouter>

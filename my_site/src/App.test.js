@@ -132,6 +132,46 @@ test('a tap acts once, the click the browser synthesises after it is ignored', (
   expect(screen.getByText('Aktuelle Projekte')).toBeInTheDocument();
 });
 
+test('Impressum reached from inside the site offers a way back', () => {
+  render(<AppWrapper />);
+  fireEvent.click(screen.getByRole('link', { name: 'Impressum' }));
+  advance();
+
+  expect(screen.getByText(/§ 5 DDG/)).toBeInTheDocument();
+  expect(screen.getByRole('link', { name: 'Back' })).toBeInTheDocument();
+});
+
+test('a direct visit to the Impressum shows no back control', () => {
+  // no in-app history and no referrer, so there is nowhere to go back to
+  window.location.hash = '#/impressum';
+  render(<AppWrapper />);
+
+  expect(screen.getByText(/§ 5 DDG/)).toBeInTheDocument();
+  expect(screen.queryByRole('link', { name: 'Back' })).not.toBeInTheDocument();
+});
+
+test('privacy page states what the site does and does not do', () => {
+  render(<AppWrapper />);
+  fireEvent.click(screen.getByRole('link', { name: 'Privacy' }));
+  advance();
+
+  expect(screen.getByText(/Art. 13 GDPR/)).toBeInTheDocument();
+  expect(screen.getByText(/sets no cookies/)).toBeInTheDocument();
+  expect(screen.getByText(/GitHub Pages/)).toBeInTheDocument();
+  expect(document.documentElement.lang).toBe('en');
+});
+
+test('German privacy page is reachable and marked as German', () => {
+  render(<AppWrapper />);
+  fireEvent.click(screen.getByRole('button', { name: /Deutsch/i }));
+  advance();
+  fireEvent.click(screen.getByRole('link', { name: 'Datenschutz' }));
+  advance();
+
+  expect(screen.getByText(/Art. 13 DSGVO/)).toBeInTheDocument();
+  expect(document.documentElement.lang).toBe('de');
+});
+
 test('search with no match reports it', () => {
   window.location.hash = '#/projects';
   render(<AppWrapper />);
